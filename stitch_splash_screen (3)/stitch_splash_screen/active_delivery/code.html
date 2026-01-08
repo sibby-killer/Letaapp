@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Active Delivery - Rider App</title>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Config -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#2bee79",
+              "primary-hover": "#25d36b",
+              "background-light": "#f6f8f7",
+              "background-dark": "#102217",
+              "surface-dark": "#192b20",
+              "surface-light": "#ffffff",
+              "text-secondary": "#92c9a8",
+            },
+            fontFamily: {
+              "display": ["Inter", "Noto Sans", "sans-serif"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "md": "0.375rem", "lg": "0.5rem", "xl": "0.75rem", "2xl": "1rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        /* Custom scrollbar for cleaner look */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #102217; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #2bee79; 
+            border-radius: 3px;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-white antialiased min-h-screen">
+<!-- Mobile Container Wrapper -->
+<div class="max-w-md mx-auto min-h-screen bg-background-light dark:bg-background-dark relative shadow-2xl overflow-hidden border-x border-white/5">
+<!-- Top App Bar (Shared across states) -->
+<header class="sticky top-0 z-50 bg-background-light dark:bg-background-dark/95 backdrop-blur-sm border-b border-white/5 p-4 flex items-center justify-between">
+<button class="p-2 -ml-2 rounded-full hover:bg-black/5 dark:hover:bg-white/10 transition-colors">
+<span class="material-symbols-outlined text-slate-900 dark:text-white text-2xl">arrow_back</span>
+</button>
+<div class="flex flex-col items-center">
+<h1 class="text-lg font-bold leading-tight">Active Order</h1>
+<span class="text-xs font-medium text-text-secondary">#12345</span>
+</div>
+<button class="px-3 py-1 rounded-full bg-primary/10 text-primary hover:bg-primary/20 transition-colors text-sm font-bold">
+                Help
+            </button>
+</header>
+<!-- Main Content Area -->
+<main class="flex flex-col gap-8 pb-10">
+<!-- STATE 1: To Shop -->
+<section class="relative flex flex-col">
+<div class="px-4 py-2 border-l-4 border-primary ml-4 mt-6 mb-2">
+<p class="text-xs font-bold text-primary uppercase tracking-widest">State 1</p>
+<p class="text-sm text-gray-400">En route to Vendor</p>
+</div>
+<!-- Map View -->
+<div class="px-4 mb-4 relative group">
+<div class="absolute top-4 left-6 z-10 bg-surface-dark/90 backdrop-blur px-3 py-1.5 rounded-lg shadow-lg border border-white/10 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-lg">near_me</span>
+<span class="text-xs font-bold text-white">2.4 km • 8 min</span>
+</div>
+<div class="w-full aspect-[4/3] rounded-2xl overflow-hidden shadow-inner border border-white/5 relative bg-[#15261d]">
+<!-- Route Line Placeholder Gradient -->
+<div class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-[#2bee79]/10 via-transparent to-transparent opacity-50"></div>
+<div class="w-full h-full bg-cover bg-center opacity-80" data-alt="Map showing route from rider location to Mama Oliech's Kitchen" data-location="Nairobi" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBCISMY4Cu2PmB-SAIeDEuvQBX5-8gu8dmRbmMjUFUZtMtLra_CrLyxwPcW9mQD25VkTFD8uScx1daiT1PQ9sayof-4Y8Q5WnAVg5Ky1YQBonI6pap5fRKVKpX6t3tTRhbp9_ruEseMZODFi6nRrxUm86MBr1CnzCfqEiwrcBeS61Vq4qUYrjplnBKj2fd2gxDTAKXBLsaVyouGoLUj6Wod_y9S1iMb5rWuNjFoEaIKM51vmPkhwnzKN9nZ2JH5ql_d8CqbxjYsSkUJ');"></div>
+</div>
+</div>
+<!-- Info Card -->
+<div class="px-4">
+<div class="bg-surface-light dark:bg-surface-dark rounded-xl p-4 shadow-lg border border-gray-100 dark:border-white/5 flex flex-col gap-4">
+<div class="flex justify-between items-start">
+<div>
+<h2 class="text-xl font-bold mb-1">Mama Oliech's Kitchen</h2>
+<div class="flex items-center gap-1.5">
+<span class="bg-yellow-500/20 text-yellow-500 text-xs px-1.5 py-0.5 rounded font-bold flex items-center gap-0.5">
+<span class="material-symbols-outlined text-[12px] fill-current">star</span> 4.8
+                                    </span>
+<span class="text-sm text-gray-500 dark:text-gray-400">• Vendor • Fast Food</span>
+</div>
+</div>
+<div class="w-12 h-12 rounded-lg bg-cover bg-center bg-gray-700" data-alt="Logo of Mama Oliech's Kitchen" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBoSnsALg1nRtwUeDd6ZbvOU-JRj1lvb9FbORT0dwd8JQZqUVnwbUQqrZ-NIWYYYM6KQsLSMVAU3Q2fwHgLtfZmHXc1B8CJMFuP9ZbWpHfTsYQkYPqNTCbldYREPvAGshRFvD6algP6EAwalOFjLfA7lmGtvCjEkg85Q1x6t99ZWmBL1Q0sSOJtpg7p0iKTpdX95ineNIWrNSovhYu3EkO7fKP7t_2_5JdOUGnZISxkyOG73GYy3SY9ODGQkaOVP43KlTCEoB4xAfQG');"></div>
+</div>
+<div class="flex gap-3">
+<button class="flex-1 flex items-center justify-center gap-2 h-10 rounded-lg bg-surface-dark dark:bg-white/5 hover:bg-black/10 dark:hover:bg-white/10 border border-gray-200 dark:border-white/10 transition-colors">
+<span class="material-symbols-outlined text-gray-600 dark:text-gray-300 text-lg">call</span>
+<span class="text-sm font-medium text-gray-700 dark:text-gray-200">Call Vendor</span>
+</button>
+<button class="flex-1 flex items-center justify-center gap-2 h-10 rounded-lg bg-surface-dark dark:bg-white/5 hover:bg-black/10 dark:hover:bg-white/10 border border-gray-200 dark:border-white/10 transition-colors">
+<span class="material-symbols-outlined text-gray-600 dark:text-gray-300 text-lg">chat</span>
+<span class="text-sm font-medium text-gray-700 dark:text-gray-200">Message</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Primary Action -->
+<div class="px-4 mt-4">
+<button class="w-full bg-primary hover:bg-primary-hover text-background-dark font-bold text-lg py-4 rounded-xl shadow-[0_0_15px_rgba(43,238,121,0.3)] flex items-center justify-center gap-2 transition-transform active:scale-[0.98]">
+<span class="material-symbols-outlined">storefront</span>
+                        I have arrived at Shop
+                    </button>
+</div>
+</section>
+<div class="h-px w-full bg-gradient-to-r from-transparent via-white/10 to-transparent my-4"></div>
+<!-- STATE 2: Pickup -->
+<section class="relative flex flex-col" style="--checkbox-tick-svg: url('data:image/svg+xml,%3csvg viewBox=%270 0 16 16%27 fill=%27rgb(16,34,23)%27 xmlns=%27http://www.w3.org/2000/svg%27%3e%3cpath d=%27M12.207 4.793a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0l-2-2a1 1 0 011.414-1.414L6.5 9.086l4.293-4.293a1 1 0 011.414 0z%27/%3e%3c/svg%3e');">
+<div class="px-4 py-2 border-l-4 border-primary ml-4 mb-2">
+<p class="text-xs font-bold text-primary uppercase tracking-widest">State 2</p>
+<p class="text-sm text-gray-400">Pickup Checklist</p>
+</div>
+<div class="px-4">
+<div class="bg-surface-light dark:bg-surface-dark rounded-xl p-6 shadow-lg border border-gray-100 dark:border-white/5">
+<h2 class="text-xl font-bold mb-4 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">checklist</span>
+                            Confirm Pickup
+                        </h2>
+<div class="flex flex-col gap-1 divide-y divide-white/5">
+<label class="flex items-center gap-4 py-3 group cursor-pointer">
+<input checked="" class="peer h-6 w-6 rounded border-2 border-gray-500 dark:border-[#326747] bg-transparent text-primary checked:bg-primary checked:border-primary focus:ring-0 focus:ring-offset-0 transition-all" type="checkbox"/>
+<div class="flex-1 opacity-100 peer-checked:opacity-50 transition-opacity">
+<p class="text-base font-medium leading-none dark:text-white">1x Pilau</p>
+<p class="text-xs text-gray-500 mt-1">Spicy, No coleslaw</p>
+</div>
+</label>
+<label class="flex items-center gap-4 py-3 group cursor-pointer">
+<input class="peer h-6 w-6 rounded border-2 border-gray-500 dark:border-[#326747] bg-transparent text-primary checked:bg-primary checked:border-primary focus:ring-0 focus:ring-offset-0 transition-all" type="checkbox"/>
+<div class="flex-1 opacity-100 peer-checked:opacity-50 transition-opacity">
+<p class="text-base font-medium leading-none dark:text-white">2x Chapati</p>
+</div>
+</label>
+<label class="flex items-center gap-4 py-3 group cursor-pointer">
+<input class="peer h-6 w-6 rounded border-2 border-gray-500 dark:border-[#326747] bg-transparent text-primary checked:bg-primary checked:border-primary focus:ring-0 focus:ring-offset-0 transition-all" type="checkbox"/>
+<div class="flex-1 opacity-100 peer-checked:opacity-50 transition-opacity">
+<p class="text-base font-medium leading-none dark:text-white">1x Soda</p>
+<p class="text-xs text-gray-500 mt-1">Coke 500ml</p>
+</div>
+</label>
+</div>
+</div>
+</div>
+<!-- Primary Action -->
+<div class="px-4 mt-4">
+<button class="w-full bg-primary hover:bg-primary-hover text-background-dark font-bold text-lg py-4 rounded-xl shadow-[0_0_15px_rgba(43,238,121,0.3)] flex items-center justify-center gap-2 transition-transform active:scale-[0.98]">
+<span class="material-symbols-outlined">check_circle</span>
+                        Confirm Pickup
+                    </button>
+</div>
+</section>
+<div class="h-px w-full bg-gradient-to-r from-transparent via-white/10 to-transparent my-4"></div>
+<!-- STATE 3: To Student -->
+<section class="relative flex flex-col">
+<div class="px-4 py-2 border-l-4 border-primary ml-4 mb-2">
+<p class="text-xs font-bold text-primary uppercase tracking-widest">State 3</p>
+<p class="text-sm text-gray-400">To Student (Hostel)</p>
+</div>
+<!-- Map View -->
+<div class="px-4 mb-4 relative">
+<div class="absolute top-4 right-6 z-10 bg-surface-dark/90 backdrop-blur px-3 py-1.5 rounded-lg shadow-lg border border-white/10 flex items-center gap-2">
+<span class="text-xs font-bold text-text-secondary">Est. Earnings: <span class="text-white text-sm">KES 150</span></span>
+</div>
+<div class="w-full aspect-[4/3] rounded-2xl overflow-hidden shadow-inner border border-white/5 relative bg-[#15261d]">
+<!-- Route Line Placeholder Gradient -->
+<div class="absolute inset-0 bg-[radial-gradient(circle_at_top_right,_var(--tw-gradient-stops))] from-[#2bee79]/10 via-transparent to-transparent opacity-50"></div>
+<div class="w-full h-full bg-cover bg-center opacity-80" data-alt="Map showing route from shop to Hall 4" data-location="University Campus" style="background-image: url('https://placeholder.pics/svg/300');"></div>
+</div>
+</div>
+<!-- Student Info Card -->
+<div class="px-4">
+<div class="bg-surface-light dark:bg-surface-dark rounded-xl p-4 shadow-lg border border-gray-100 dark:border-white/5 flex flex-col gap-4">
+<div class="flex justify-between items-center">
+<div class="flex items-center gap-3">
+<div class="h-12 w-12 rounded-full bg-gray-700 flex items-center justify-center text-xl font-bold text-white bg-gradient-to-br from-blue-500 to-purple-600">
+                                    JD
+                                </div>
+<div>
+<h2 class="text-lg font-bold">John Doe</h2>
+<p class="text-sm text-primary font-medium">Hall 4, Room 20</p>
+</div>
+</div>
+<button class="h-10 w-10 rounded-full bg-surface-dark dark:bg-white/10 flex items-center justify-center text-primary hover:bg-primary hover:text-background-dark transition-all">
+<span class="material-symbols-outlined">call</span>
+</button>
+</div>
+<div class="p-3 bg-black/20 rounded-lg">
+<p class="text-xs text-gray-400 uppercase font-bold mb-1">Delivery Instructions</p>
+<p class="text-sm text-gray-200">"Please call me when you reach the gate. I'll come down."</p>
+</div>
+</div>
+</div>
+<!-- Primary Action -->
+<div class="px-4 mt-4">
+<button class="w-full bg-primary hover:bg-primary-hover text-background-dark font-bold text-lg py-4 rounded-xl shadow-[0_0_15px_rgba(43,238,121,0.3)] flex items-center justify-center gap-2 transition-transform active:scale-[0.98]">
+<span class="material-symbols-outlined">task_alt</span>
+                        Complete Delivery
+                    </button>
+</div>
+</section>
+</main>
+<!-- Floating SOS/Support Button (Fixed position relative to container) -->
+<button class="absolute bottom-6 right-6 h-12 w-12 rounded-full bg-red-500/90 text-white shadow-lg shadow-red-500/30 flex items-center justify-center hover:scale-110 transition-transform z-50">
+<span class="material-symbols-outlined">sos</span>
+</button>
+</div>
+</body></html>

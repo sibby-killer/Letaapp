@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>New Job Request</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Configuration -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#2bee79",
+                        "background-light": "#f6f8f7",
+                        "background-dark": "#102217",
+                        "card-dark": "#193324",
+                        "text-secondary": "#92c9a8",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "1rem", 
+                        "lg": "2rem", 
+                        "xl": "3rem", 
+                        "full": "9999px"
+                    },
+                    boxShadow: {
+                        'glow': '0 0 20px rgba(43, 238, 121, 0.3)',
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        /* Custom timeline line for the route */
+        .route-line::before {
+            content: '';
+            position: absolute;
+            top: 2.5rem;
+            bottom: -2.5rem;
+            left: 1.5rem; /* Center of the icon (w-12 = 3rem / 2 = 1.5rem) */
+            width: 2px;
+            background-image: linear-gradient(to bottom, #234832 50%, transparent 50%);
+            background-size: 2px 8px;
+            background-repeat: repeat-y;
+            z-index: 0;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark min-h-screen flex items-center justify-center p-4">
+<!-- Mobile Container -->
+<div class="relative w-full max-w-md bg-background-light dark:bg-background-dark overflow-hidden rounded-lg flex flex-col h-full min-h-[800px] shadow-2xl border border-white/5">
+<!-- Header Alert -->
+<div class="pt-8 pb-2 px-6 flex flex-col items-center animate-pulse">
+<div class="flex items-center gap-2 text-primary mb-1">
+<span class="material-symbols-outlined text-xl">notifications_active</span>
+<span class="text-xs font-bold tracking-widest uppercase">New Request</span>
+</div>
+<h1 class="text-white tracking-tight text-3xl font-extrabold leading-tight text-center">
+                INCOMING ORDER
+            </h1>
+</div>
+<!-- Main Card: Map & Earnings -->
+<div class="px-4 py-2 w-full">
+<div class="relative flex flex-col items-stretch justify-start rounded-xl shadow-glow bg-card-dark overflow-hidden group">
+<!-- Map Background -->
+<div class="w-full h-48 bg-center bg-no-repeat bg-cover relative" data-alt="Minimalist dark map showing city streets with route highlighted" data-location="Kakamega, Kenya" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBA2u17DVTVcFfhzCUGPIwelRyWCUH-5sMoj5FpvhYsEYimXnAHTgiyaFUVSCElmXNN4WRwR9SzZ3SYxu-Jgxql6HMP0Z_5c_jl501guUe-b-fOkzxl1qWuytkIUTtuiSFiUyrcj379WMHYQR_fj-m-AG1LlQHtBIRWzD2a3o3v0JuaH1j6wasqJyLxd49jpA_nIpdiGnkla_n3uuYk4XiyFiNuJ8ocO-viql3KvuAiUiQhzCsviWnHVLjoKrBVNgDX7sUqcvVADvtV");'>
+<!-- Overlay Gradient -->
+<div class="absolute inset-0 bg-gradient-to-t from-card-dark via-card-dark/60 to-transparent"></div>
+<!-- Floating Distance Badge -->
+<div class="absolute top-4 right-4 bg-black/60 backdrop-blur-md px-3 py-1.5 rounded-full border border-white/10 flex items-center gap-1">
+<span class="material-symbols-outlined text-primary text-sm">near_me</span>
+<span class="text-white text-xs font-medium">1.2 km • 5 min</span>
+</div>
+</div>
+<!-- Earnings Overlay Content -->
+<div class="relative -mt-16 p-5 flex flex-col items-center justify-center">
+<p class="text-text-secondary text-sm font-medium mb-1">Estimated Earnings</p>
+<div class="flex items-baseline gap-1">
+<span class="text-white text-4xl font-black tracking-tight">KES</span>
+<span class="text-primary text-5xl font-black tracking-tighter drop-shadow-md">50</span>
+</div>
+<div class="mt-2 flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/5">
+<span class="material-symbols-outlined text-text-secondary text-sm">payments</span>
+<span class="text-text-secondary text-xs font-medium">M-Pesa</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Spacer -->
+<div class="h-4"></div>
+<!-- Route Details List -->
+<div class="px-4 flex-grow">
+<div class="bg-card-dark/50 rounded-xl p-2 border border-white/5">
+<!-- Pickup Item -->
+<div class="relative flex items-center gap-4 px-2 py-3 route-line">
+<div class="relative z-10 text-white flex items-center justify-center rounded-full bg-[#234832] border-2 border-background-dark shrink-0 size-12 shadow-lg">
+<span class="material-symbols-outlined" style="font-size: 20px;">storefront</span>
+</div>
+<div class="flex flex-col justify-center flex-grow">
+<p class="text-text-secondary text-xs uppercase font-bold tracking-wider mb-0.5">Pick-up</p>
+<p class="text-white text-base font-semibold leading-tight line-clamp-1">Student Centre Cafeteria</p>
+<p class="text-text-secondary text-sm leading-normal mt-0.5">2x Fries, 1x Soda</p>
+</div>
+</div>
+<!-- Dropoff Item -->
+<div class="relative flex items-center gap-4 px-2 py-3">
+<div class="relative z-10 text-background-dark flex items-center justify-center rounded-full bg-primary shrink-0 size-12 shadow-lg">
+<span class="material-symbols-outlined" style="font-size: 20px;">location_on</span>
+</div>
+<div class="flex flex-col justify-center flex-grow">
+<p class="text-text-secondary text-xs uppercase font-bold tracking-wider mb-0.5">Drop-off</p>
+<p class="text-white text-base font-semibold leading-tight line-clamp-1">SPD Hall, Room 10</p>
+<p class="text-text-secondary text-sm leading-normal mt-0.5">Hall 4 entrance</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Timer & Actions Footer -->
+<div class="mt-auto bg-background-dark border-t border-white/5 p-5 pb-8">
+<!-- Progress Bar -->
+<div class="flex flex-col gap-2 mb-6">
+<div class="flex gap-6 justify-between items-end">
+<p class="text-white text-sm font-medium leading-normal">Auto-rejecting...</p>
+<p class="text-primary text-sm font-bold leading-normal animate-pulse">01:28</p>
+</div>
+<div class="rounded-full bg-[#234832] h-2 overflow-hidden">
+<div class="h-full rounded-full bg-gradient-to-r from-primary to-[#0bda43]" style="width: 80%;"></div>
+</div>
+</div>
+<!-- Buttons -->
+<div class="grid grid-cols-2 gap-4">
+<button class="flex items-center justify-center h-14 rounded-full border border-white/20 bg-transparent text-white font-bold text-lg hover:bg-white/5 active:scale-95 transition-all">
+                    Decline
+                </button>
+<button class="relative overflow-hidden flex items-center justify-center h-14 rounded-full bg-primary text-background-dark font-black text-lg shadow-[0_0_15px_rgba(43,238,121,0.4)] hover:shadow-[0_0_25px_rgba(43,238,121,0.6)] active:scale-95 transition-all group">
+<span class="relative z-10 flex items-center gap-2">
+                        Accept Order
+                        <span class="material-symbols-outlined text-xl">arrow_forward</span>
+</span>
+<!-- Shine effect -->
+<div class="absolute inset-0 -translate-x-full group-hover:animate-[shimmer_1.5s_infinite] bg-gradient-to-r from-transparent via-white/30 to-transparent z-0"></div>
+</button>
+</div>
+</div>
+</div>
+<!-- Tailwind Config for Shimmer Animation -->
+<script>
+        tailwind.config.theme.extend.keyframes = {
+            ...tailwind.config.theme.extend.keyframes,
+            shimmer: {
+                '100%': { transform: 'translateX(100%)' },
+            }
+        }
+    </script>
+</body></html>

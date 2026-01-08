@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Vendor Dashboard</title>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Google Fonts: Inter -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Config -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#2bee79",
+                        "background-light": "#f6f8f7",
+                        "background-dark": "#102217",
+                        "surface-dark": "#1c2e24",
+                        "border-green": "#326747",
+                        "text-secondary": "#92c9a8",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"],
+                        "sans": ["Inter", "sans-serif"],
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "2xl": "1rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom scrollbar hiding for clean UI */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark min-h-screen flex flex-col overflow-hidden selection:bg-primary selection:text-background-dark">
+<!-- Sticky Header -->
+<header class="sticky top-0 z-50 bg-background-dark/95 backdrop-blur-md border-b border-border-green">
+<div class="flex items-center justify-between px-4 py-3">
+<div class="flex flex-col">
+<h2 class="text-white text-lg font-bold leading-tight tracking-[-0.015em]">Vendor Dashboard</h2>
+<div class="flex items-center gap-1.5 mt-0.5">
+<span class="relative flex h-2 w-2">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+<span class="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
+</span>
+<span class="text-primary text-xs font-medium">Online</span>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<!-- Status Toggle -->
+<label class="relative flex h-[28px] w-[48px] cursor-pointer items-center rounded-full border-none bg-[#234832] p-0.5 has-[:checked]:justify-end has-[:checked]:bg-primary transition-colors duration-200">
+<div class="h-full w-[24px] rounded-full bg-white shadow-sm transition-all"></div>
+<input checked="" class="invisible absolute" type="checkbox"/>
+</label>
+<!-- Bell Icon -->
+<button class="flex items-center justify-center text-white relative">
+<span class="material-symbols-outlined text-[26px]">notifications</span>
+<span class="absolute top-0 right-0.5 h-2.5 w-2.5 rounded-full bg-red-500 border-2 border-background-dark"></span>
+</button>
+</div>
+</div>
+<!-- Tabs -->
+<div class="px-4">
+<div class="flex justify-between gap-2">
+<button class="flex flex-col items-center justify-center border-b-[3px] border-b-primary text-white pb-3 pt-2 flex-1 transition-colors">
+<p class="text-white text-sm font-bold leading-normal">New <span class="bg-primary text-background-dark text-[10px] px-1.5 py-0.5 rounded-full ml-1">3</span></p>
+</button>
+<button class="flex flex-col items-center justify-center border-b-[3px] border-b-transparent text-text-secondary pb-3 pt-2 flex-1 hover:text-white transition-colors">
+<p class="text-inherit text-sm font-bold leading-normal">Processing <span class="bg-[#234832] text-white text-[10px] px-1.5 py-0.5 rounded-full ml-1">1</span></p>
+</button>
+<button class="flex flex-col items-center justify-center border-b-[3px] border-b-transparent text-text-secondary pb-3 pt-2 flex-1 hover:text-white transition-colors">
+<p class="text-inherit text-sm font-bold leading-normal">Ready</p>
+</button>
+</div>
+</div>
+</header>
+<!-- Main Content (Scrollable) -->
+<main class="flex-1 overflow-y-auto no-scrollbar pb-24">
+<!-- Quick Stats -->
+<div class="grid grid-cols-2 gap-3 p-4">
+<div class="flex flex-col gap-1 rounded-xl p-4 bg-surface-dark border border-border-green shadow-sm">
+<div class="flex items-center gap-2 mb-1">
+<span class="material-symbols-outlined text-primary text-[20px]">payments</span>
+<p class="text-text-secondary text-xs font-medium uppercase tracking-wider">Earnings</p>
+</div>
+<p class="text-white text-xl font-bold leading-tight">Ksh 4,500</p>
+</div>
+<div class="flex flex-col gap-1 rounded-xl p-4 bg-surface-dark border border-border-green shadow-sm">
+<div class="flex items-center gap-2 mb-1">
+<span class="material-symbols-outlined text-primary text-[20px]">shopping_bag</span>
+<p class="text-text-secondary text-xs font-medium uppercase tracking-wider">Completed</p>
+</div>
+<p class="text-white text-xl font-bold leading-tight">12</p>
+</div>
+</div>
+<!-- Order List Title -->
+<div class="px-4 pb-2 flex items-center justify-between">
+<h3 class="text-white text-base font-bold">Incoming Orders</h3>
+<button class="text-primary text-sm font-medium">View History</button>
+</div>
+<!-- Orders Stack -->
+<div class="flex flex-col gap-4 px-4">
+<!-- Order Card 1 -->
+<div class="flex flex-col gap-4 rounded-xl border border-border-green bg-surface-dark p-5 shadow-lg relative overflow-hidden group">
+<!-- Pulse animation for new order -->
+<div class="absolute top-0 left-0 w-1 h-full bg-primary"></div>
+<div class="flex justify-between items-start">
+<div>
+<div class="flex items-center gap-2">
+<h3 class="text-lg font-bold text-white">#ORD-492</h3>
+<span class="px-2 py-0.5 bg-primary/20 text-primary text-[10px] font-bold uppercase rounded">New</span>
+</div>
+<p class="text-xs text-text-secondary mt-1 flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">schedule</span> 2 mins ago
+                        </p>
+</div>
+<div class="text-right">
+<span class="block text-xl font-bold text-white">Ksh 450</span>
+<span class="text-xs text-text-secondary">M-Pesa</span>
+</div>
+</div>
+<div class="h-px bg-border-green w-full"></div>
+<div class="flex flex-col gap-3">
+<div class="flex justify-between items-center text-sm text-white">
+<div class="flex items-center gap-3">
+<div class="bg-[#234832] h-8 w-8 rounded flex items-center justify-center text-primary font-bold text-xs">1x</div>
+<span class="font-medium">Chicken &amp; Chips</span>
+</div>
+<span class="text-text-secondary text-xs">Ksh 350</span>
+</div>
+<div class="flex justify-between items-center text-sm text-white">
+<div class="flex items-center gap-3">
+<div class="bg-[#234832] h-8 w-8 rounded flex items-center justify-center text-primary font-bold text-xs">2x</div>
+<span class="font-medium">500ml Soda</span>
+</div>
+<span class="text-text-secondary text-xs">Ksh 100</span>
+</div>
+<div class="mt-1 p-2 rounded bg-background-dark border border-border-green/50 flex gap-2 items-start">
+<span class="material-symbols-outlined text-yellow-500 text-[16px] mt-0.5">info</span>
+<p class="text-xs text-text-secondary italic leading-relaxed">Note: No onions please, and extra ketchup if possible.</p>
+</div>
+</div>
+<div class="flex gap-3 mt-2">
+<button class="flex-1 rounded-lg border border-border-green py-3 text-sm font-bold text-white hover:bg-[#234832] active:scale-[0.98] transition-all">Reject</button>
+<button class="flex-[2] rounded-lg bg-primary py-3 text-sm font-bold text-background-dark hover:bg-[#25d36b] active:scale-[0.98] transition-all shadow-[0_0_15px_rgba(43,238,121,0.2)]">Accept Order</button>
+</div>
+</div>
+<!-- Order Card 2 -->
+<div class="flex flex-col gap-4 rounded-xl border border-border-green bg-surface-dark p-5 shadow-lg relative overflow-hidden">
+<div class="absolute top-0 left-0 w-1 h-full bg-primary/50"></div>
+<div class="flex justify-between items-start">
+<div>
+<div class="flex items-center gap-2">
+<h3 class="text-lg font-bold text-white">#ORD-489</h3>
+<span class="px-2 py-0.5 bg-primary/10 text-primary/80 text-[10px] font-bold uppercase rounded">New</span>
+</div>
+<p class="text-xs text-text-secondary mt-1 flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">schedule</span> 15 mins ago
+                        </p>
+</div>
+<div class="text-right">
+<span class="block text-xl font-bold text-white">Ksh 120</span>
+<span class="text-xs text-text-secondary">Cash</span>
+</div>
+</div>
+<div class="h-px bg-border-green w-full"></div>
+<div class="flex flex-col gap-3">
+<div class="flex justify-between items-center text-sm text-white">
+<div class="flex items-center gap-3">
+<div class="bg-[#234832] h-8 w-8 rounded flex items-center justify-center text-primary font-bold text-xs">1x</div>
+<span class="font-medium">Smocha Special</span>
+</div>
+<span class="text-text-secondary text-xs">Ksh 120</span>
+</div>
+</div>
+<div class="flex gap-3 mt-2">
+<button class="flex-1 rounded-lg border border-border-green py-3 text-sm font-bold text-white hover:bg-[#234832] active:scale-[0.98] transition-all">Reject</button>
+<button class="flex-[2] rounded-lg bg-primary py-3 text-sm font-bold text-background-dark hover:bg-[#25d36b] active:scale-[0.98] transition-all shadow-[0_0_15px_rgba(43,238,121,0.1)]">Accept Order</button>
+</div>
+</div>
+<!-- Order Card 3 -->
+<div class="flex flex-col gap-4 rounded-xl border border-border-green bg-surface-dark p-5 shadow-lg relative overflow-hidden opacity-90">
+<div class="absolute top-0 left-0 w-1 h-full bg-primary/30"></div>
+<div class="flex justify-between items-start">
+<div>
+<div class="flex items-center gap-2">
+<h3 class="text-lg font-bold text-white">#ORD-485</h3>
+<span class="px-2 py-0.5 bg-primary/10 text-primary/70 text-[10px] font-bold uppercase rounded">New</span>
+</div>
+<p class="text-xs text-text-secondary mt-1 flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">schedule</span> 22 mins ago
+                        </p>
+</div>
+<div class="text-right">
+<span class="block text-xl font-bold text-white">Ksh 850</span>
+<span class="text-xs text-text-secondary">M-Pesa</span>
+</div>
+</div>
+<div class="h-px bg-border-green w-full"></div>
+<div class="flex flex-col gap-3">
+<div class="flex justify-between items-center text-sm text-white">
+<div class="flex items-center gap-3">
+<div class="bg-[#234832] h-8 w-8 rounded flex items-center justify-center text-primary font-bold text-xs">2x</div>
+<span class="font-medium">Pilau Beef</span>
+</div>
+<span class="text-text-secondary text-xs">Ksh 600</span>
+</div>
+<div class="flex justify-between items-center text-sm text-white">
+<div class="flex items-center gap-3">
+<div class="bg-[#234832] h-8 w-8 rounded flex items-center justify-center text-primary font-bold text-xs">1x</div>
+<span class="font-medium">Fruit Salad</span>
+</div>
+<span class="text-text-secondary text-xs">Ksh 250</span>
+</div>
+</div>
+<div class="flex gap-3 mt-2">
+<button class="flex-1 rounded-lg border border-border-green py-3 text-sm font-bold text-white hover:bg-[#234832] active:scale-[0.98] transition-all">Reject</button>
+<button class="flex-[2] rounded-lg bg-primary py-3 text-sm font-bold text-background-dark hover:bg-[#25d36b] active:scale-[0.98] transition-all shadow-[0_0_15px_rgba(43,238,121,0.1)]">Accept Order</button>
+</div>
+</div>
+<!-- Empty State Illustration Placeholder (if list was empty) -->
+<!-- 
+            <div class="flex flex-col items-center justify-center py-10 opacity-50">
+                <span class="material-symbols-outlined text-6xl text-text-secondary mb-2">inbox</span>
+                <p class="text-text-secondary text-sm">No new orders at the moment</p>
+            </div> 
+            -->
+</div>
+<div class="h-10"></div> <!-- Spacer for scrolling past bottom nav -->
+</main>
+<!-- Bottom Navigation -->
+<nav class="fixed bottom-0 w-full bg-background-dark border-t border-border-green pb-safe pt-2 z-40">
+<div class="flex justify-around items-center px-2 pb-2">
+<button class="flex flex-col items-center gap-1 p-2 w-16 group">
+<span class="material-symbols-outlined text-primary group-hover:scale-110 transition-transform filled">dashboard</span>
+<span class="text-[10px] font-medium text-primary">Orders</span>
+</button>
+<button class="flex flex-col items-center gap-1 p-2 w-16 group">
+<span class="material-symbols-outlined text-text-secondary group-hover:text-white group-hover:scale-110 transition-all">restaurant_menu</span>
+<span class="text-[10px] font-medium text-text-secondary group-hover:text-white">Menu</span>
+</button>
+<button class="flex flex-col items-center gap-1 p-2 w-16 group">
+<span class="material-symbols-outlined text-text-secondary group-hover:text-white group-hover:scale-110 transition-all">account_balance_wallet</span>
+<span class="text-[10px] font-medium text-text-secondary group-hover:text-white">Earnings</span>
+</button>
+<button class="flex flex-col items-center gap-1 p-2 w-16 group">
+<span class="material-symbols-outlined text-text-secondary group-hover:text-white group-hover:scale-110 transition-all">settings</span>
+<span class="text-[10px] font-medium text-text-secondary group-hover:text-white">Settings</span>
+</button>
+</div>
+<!-- iPhone Home Indicator safe area spacing -->
+<div class="h-4 w-full"></div>
+</nav>
+</body></html>

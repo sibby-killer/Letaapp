@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Leta App Brand Colors -->
+    <color name="primary">#2BEE79</color>
+    <color name="primary_dim">#1A5E3A</color>
+    <color name="background_light">#F6F8F7</color>
+    <color name="background_dark">#102217</color>
+    <color name="surface_dark">#193324</color>
+    <color name="surface_highlight">#112218</color>
+    <color name="border_dark">#326747</color>
+    <color name="text_secondary">#92C9A8</color>
+    
+    <!-- Standard Colors -->
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="gray_400">#9CA3AF</color>
+    <color name="gray_500">#6B7280</color>
+    <color name="gray_600">#4B5563</color>
+    <color name="slate_900">#0F172A</color>
+</resources>

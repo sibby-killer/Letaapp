@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Your Cart - MMUST Super App</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#2bee79",
+                        "background-light": "#f6f8f7",
+                        "background-dark": "#102217",
+                        "surface-dark": "#1c2e24", // Slightly lighter than background-dark for cards
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.5rem", "lg": "0.75rem", "xl": "1rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        /* Custom scrollbar hiding for cleaner mobile look */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-white font-display overflow-hidden h-screen flex flex-col">
+<!-- Top App Bar -->
+<div class="flex items-center px-4 py-4 pt-12 pb-4 justify-between bg-background-light dark:bg-background-dark sticky top-0 z-20">
+<button class="text-slate-900 dark:text-white flex size-10 shrink-0 items-center justify-center rounded-full hover:bg-slate-200 dark:hover:bg-[#234832] transition-colors">
+<span class="material-symbols-outlined" style="font-size: 24px;">arrow_back_ios_new</span>
+</button>
+<h2 class="text-slate-900 dark:text-white text-lg font-bold leading-tight tracking-tight flex-1 text-center pr-10">Your Cart</h2>
+</div>
+<!-- Scrollable Content Area -->
+<div class="flex-1 overflow-y-auto no-scrollbar pb-32">
+<!-- Cart Items List -->
+<div class="flex flex-col gap-1 px-4">
+<!-- Item 1 -->
+<div class="flex gap-4 bg-white dark:bg-surface-dark p-4 rounded-xl shadow-sm border border-slate-100 dark:border-none mb-3">
+<div class="flex items-start gap-4 flex-1">
+<div class="bg-center bg-no-repeat bg-cover rounded-lg size-[72px] shrink-0 bg-slate-200 dark:bg-[#234832]" data-alt="Delicious smokie pasua with salsa" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuC-thkz2gwIPlrXyvFXXcU5LFGWY2x55TtWR4A4ufatE6HxOxCR9myZkUJ9kD81gsyQRyI2SON03ZlcYevWSBgokVuToMRdWcYwIoQhr2SGxseq9B3-NhGnWqCF-smHjMq4VnwdvVVzYXtZ-85YQRBydiQqt42YYeqfwnxopFU_5nQB_ydHHk7PiOMWAAhzzCqnsnYPmX4MrULcr8K0Fw6a4jGbwVGFVs2jKbZjtS0Zu0TbEKTHYT65yaYecFTsSqSIWSqx607k79Ha");'>
+</div>
+<div class="flex flex-1 flex-col justify-between h-full min-h-[72px]">
+<div>
+<p class="text-slate-900 dark:text-white text-base font-semibold leading-tight line-clamp-1">Smokie Pasua</p>
+<p class="text-slate-500 dark:text-[#92c9a8] text-xs font-medium mt-1">Kwa Mathe</p>
+</div>
+<p class="text-primary text-sm font-bold mt-auto">KES 50.00</p>
+</div>
+</div>
+<div class="flex flex-col justify-between items-end gap-2">
+<button class="text-slate-400 hover:text-red-500 transition-colors">
+<span class="material-symbols-outlined" style="font-size: 20px;">delete</span>
+</button>
+<div class="flex items-center bg-slate-100 dark:bg-[#234832] rounded-lg p-1">
+<button class="flex h-6 w-6 items-center justify-center rounded bg-white dark:bg-[#112218] text-slate-900 dark:text-white shadow-sm hover:scale-105 active:scale-95 transition-transform">
+<span class="material-symbols-outlined" style="font-size: 16px;">remove</span>
+</button>
+<input class="w-8 p-0 text-center bg-transparent text-slate-900 dark:text-white text-sm font-medium border-none focus:ring-0" readonly="" type="number" value="2"/>
+<button class="flex h-6 w-6 items-center justify-center rounded bg-primary text-background-dark shadow-sm hover:scale-105 active:scale-95 transition-transform">
+<span class="material-symbols-outlined" style="font-size: 16px;">add</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Item 2 -->
+<div class="flex gap-4 bg-white dark:bg-surface-dark p-4 rounded-xl shadow-sm border border-slate-100 dark:border-none mb-3">
+<div class="flex items-start gap-4 flex-1">
+<div class="bg-center bg-no-repeat bg-cover rounded-lg size-[72px] shrink-0 bg-slate-200 dark:bg-[#234832]" data-alt="Crispy chicken and fries plate" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBtCtsYSQ7RyfR2EECCh1UtCDDmPuV9yKr4MSeB7i__vdU6jP3rzDfsjT72dxvosJCyIeCSQKjYxaTS6qp0XdCQmjlndW2CwT09OpgFxddrxASgsUNydHuoj2uYSyGvs2q_eYWirSKz_kAO5FQ7yE1b7dNFZjpDEAAtUUFoXwHygbUJBX1fz4XwcrsQPqpc9VQgPpddl4FCeDqbWPpGHA44BM29b6r4rMCL0nd1M6z0p1NVLdp2Y2BPYauksT_-rLdzO_u7Fc_n946P");'>
+</div>
+<div class="flex flex-1 flex-col justify-between h-full min-h-[72px]">
+<div>
+<p class="text-slate-900 dark:text-white text-base font-semibold leading-tight line-clamp-1">Chicken &amp; Chips</p>
+<p class="text-slate-500 dark:text-[#92c9a8] text-xs font-medium mt-1">Student Centre Cafeteria</p>
+</div>
+<p class="text-primary text-sm font-bold mt-auto">KES 350.00</p>
+</div>
+</div>
+<div class="flex flex-col justify-between items-end gap-2">
+<button class="text-slate-400 hover:text-red-500 transition-colors">
+<span class="material-symbols-outlined" style="font-size: 20px;">delete</span>
+</button>
+<div class="flex items-center bg-slate-100 dark:bg-[#234832] rounded-lg p-1">
+<button class="flex h-6 w-6 items-center justify-center rounded bg-white dark:bg-[#112218] text-slate-900 dark:text-white shadow-sm hover:scale-105 active:scale-95 transition-transform">
+<span class="material-symbols-outlined" style="font-size: 16px;">remove</span>
+</button>
+<input class="w-8 p-0 text-center bg-transparent text-slate-900 dark:text-white text-sm font-medium border-none focus:ring-0" readonly="" type="number" value="1"/>
+<button class="flex h-6 w-6 items-center justify-center rounded bg-primary text-background-dark shadow-sm hover:scale-105 active:scale-95 transition-transform">
+<span class="material-symbols-outlined" style="font-size: 16px;">add</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Item 3 -->
+<div class="flex gap-4 bg-white dark:bg-surface-dark p-4 rounded-xl shadow-sm border border-slate-100 dark:border-none mb-3">
+<div class="flex items-start gap-4 flex-1">
+<div class="bg-center bg-no-repeat bg-cover rounded-lg size-[72px] shrink-0 bg-slate-200 dark:bg-[#234832]" data-alt="Fresh fruit salad bowl" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDNqw4LV91pIhZ1h6x7x6Ai9Gyj1NDo0QiRBW4dnwnOAJHHzadWZg0Ifl1Lqo55n5TxqcZyohGEMj1vEd-pi_e-fU0slgoiXgCv5syAzMWrGjXlbZu8ENQ0d4N-5FtNCTZ96U-hqsGe-bkyxofL9J1x2yNeTMK1n9lHpjU1hDuHAmtepKJJ9rxI31xklu7mxar3pOJNdOdCc6qDtlqi5mMs_UuyevS2LmO6pg_Ms9we9ptmqsdnJGPK6TItyaXnFHO-wjaNHGw892W9");'>
+</div>
+<div class="flex flex-1 flex-col justify-between h-full min-h-[72px]">
+<div>
+<p class="text-slate-900 dark:text-white text-base font-semibold leading-tight line-clamp-1">Fruit Salad</p>
+<p class="text-slate-500 dark:text-[#92c9a8] text-xs font-medium mt-1">Mama Mboga</p>
+</div>
+<p class="text-primary text-sm font-bold mt-auto">KES 100.00</p>
+</div>
+</div>
+<div class="flex flex-col justify-between items-end gap-2">
+<button class="text-slate-400 hover:text-red-500 transition-colors">
+<span class="material-symbols-outlined" style="font-size: 20px;">delete</span>
+</button>
+<div class="flex items-center bg-slate-100 dark:bg-[#234832] rounded-lg p-1">
+<button class="flex h-6 w-6 items-center justify-center rounded bg-white dark:bg-[#112218] text-slate-900 dark:text-white shadow-sm hover:scale-105 active:scale-95 transition-transform">
+<span class="material-symbols-outlined" style="font-size: 16px;">remove</span>
+</button>
+<input class="w-8 p-0 text-center bg-transparent text-slate-900 dark:text-white text-sm font-medium border-none focus:ring-0" readonly="" type="number" value="1"/>
+<button class="flex h-6 w-6 items-center justify-center rounded bg-primary text-background-dark shadow-sm hover:scale-105 active:scale-95 transition-transform">
+<span class="material-symbols-outlined" style="font-size: 16px;">add</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Referral Section -->
+<div class="px-4 py-6">
+<div class="bg-white dark:bg-surface-dark p-5 rounded-xl border border-dashed border-primary/40 dark:border-primary/30">
+<div class="flex items-center gap-3 mb-4">
+<div class="size-10 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-primary" style="font-size: 20px;">local_offer</span>
+</div>
+<div>
+<h3 class="text-slate-900 dark:text-white font-bold text-sm">Referral Discount</h3>
+<p class="text-slate-500 dark:text-[#92c9a8] text-xs">Have a friend? Get 10% off.</p>
+</div>
+</div>
+<div class="flex w-full items-center gap-2">
+<input class="flex-1 bg-slate-50 dark:bg-[#112218] text-slate-900 dark:text-white rounded-lg border-none focus:ring-1 focus:ring-primary h-11 px-4 text-sm placeholder:text-slate-400 dark:placeholder:text-[#92c9a8]/50" placeholder="Enter MMUST referral code"/>
+<button class="bg-slate-900 dark:bg-[#234832] text-white hover:bg-slate-800 dark:hover:bg-[#2c5a3e] px-4 h-11 rounded-lg text-sm font-bold transition-colors">
+                        Apply
+                    </button>
+</div>
+</div>
+</div>
+<!-- Order Breakdown -->
+<div class="px-6 pb-6">
+<div class="flex justify-between py-2">
+<p class="text-slate-500 dark:text-[#92c9a8] text-sm">Item Total</p>
+<p class="text-slate-900 dark:text-white text-sm font-semibold">KES 550.00</p>
+</div>
+<div class="flex justify-between py-2">
+<p class="text-slate-500 dark:text-[#92c9a8] text-sm flex items-center gap-1">
+                    Delivery Fee
+                    <span class="material-symbols-outlined text-xs opacity-60" title="Calculated by AI Logistics">info</span>
+</p>
+<p class="text-slate-900 dark:text-white text-sm font-semibold">KES 50.00</p>
+</div>
+<div class="flex justify-between py-2 border-b border-slate-200 dark:border-white/10 pb-4">
+<p class="text-primary text-sm">Discount</p>
+<p class="text-primary text-sm font-semibold">- KES 0.00</p>
+</div>
+<div class="flex justify-between py-4">
+<p class="text-slate-900 dark:text-white text-base font-bold">Total</p>
+<p class="text-slate-900 dark:text-white text-xl font-bold">KES 600.00</p>
+</div>
+</div>
+</div>
+<!-- Sticky Footer CTA -->
+<div class="bg-white/80 dark:bg-background-dark/95 backdrop-blur-md border-t border-slate-100 dark:border-white/5 p-4 pb-8 sticky bottom-0 z-30 w-full">
+<button class="w-full bg-primary hover:bg-[#25d36b] active:bg-[#1fb35a] text-background-dark font-bold text-lg h-14 rounded-xl shadow-lg shadow-primary/20 flex items-center justify-between px-6 transition-all transform active:scale-[0.98]">
+<span>Proceed to Checkout</span>
+<span class="bg-background-dark/10 dark:bg-background-dark/20 px-3 py-1 rounded text-base">KES 600</span>
+</button>
+</div>
+</body></html>

@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Select Your Role - MMUST Super App</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Config -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#2bee79",
+                        "background-light": "#f6f8f7",
+                        "background-dark": "#102217",
+                        "surface-dark": "#193324",
+                        "text-secondary": "#92c9a8",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom scrollbar hiding for cleaner mobile look */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display antialiased text-slate-900 dark:text-white">
+<div class="relative flex h-full min-h-screen w-full max-w-md mx-auto flex-col overflow-x-hidden shadow-2xl">
+<!-- Header -->
+<div class="flex items-center px-4 py-4 justify-between sticky top-0 z-10 bg-background-light/95 dark:bg-background-dark/95 backdrop-blur-sm">
+<button class="text-slate-900 dark:text-white flex size-10 shrink-0 items-center justify-center rounded-full hover:bg-black/5 dark:hover:bg-white/10 transition-colors">
+<span class="material-symbols-outlined text-[24px]">arrow_back</span>
+</button>
+<h2 class="text-slate-900 dark:text-white text-lg font-bold leading-tight tracking-[-0.015em]">Sign Up</h2>
+<div class="size-10"></div> <!-- Spacer for alignment -->
+</div>
+<!-- Progress Indicator -->
+<div class="flex w-full flex-row items-center justify-center gap-2 py-4">
+<div class="h-1.5 w-8 rounded-full bg-primary"></div>
+<div class="h-1.5 w-2 rounded-full bg-slate-300 dark:bg-surface-dark"></div>
+<div class="h-1.5 w-2 rounded-full bg-slate-300 dark:bg-surface-dark"></div>
+<div class="h-1.5 w-2 rounded-full bg-slate-300 dark:bg-surface-dark"></div>
+</div>
+<!-- Main Content -->
+<div class="flex-1 flex flex-col px-6 pb-24">
+<!-- Headline Section -->
+<div class="mb-8 mt-2">
+<h1 class="text-slate-900 dark:text-white tracking-tight text-[32px] font-extrabold leading-tight text-left mb-2">
+                    Choose your path
+                </h1>
+<p class="text-slate-500 dark:text-text-secondary text-base font-normal leading-normal">
+                    Customize your campus experience.
+                </p>
+</div>
+<!-- Role Cards Container -->
+<div class="flex flex-col gap-4 grow">
+<!-- Student Card (Active State Example) -->
+<label class="group relative cursor-pointer">
+<input checked="" class="peer sr-only" name="role" type="radio" value="student"/>
+<div class="relative flex flex-col items-start justify-start rounded-xl p-4 transition-all duration-300 bg-white dark:bg-surface-dark border-2 border-transparent peer-checked:border-primary peer-checked:bg-primary/5 dark:peer-checked:bg-primary/10 shadow-sm hover:shadow-md">
+<!-- Card Image/Icon -->
+<div class="w-full h-32 mb-4 rounded-lg bg-cover bg-center overflow-hidden relative" data-alt="University students studying on campus lawn">
+<div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+<div class="absolute bottom-3 left-3 bg-white/20 backdrop-blur-md p-2 rounded-lg text-white">
+<span class="material-symbols-outlined text-[24px]">school</span>
+</div>
+<img alt="Students walking on campus" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC2qNoLQpG8vZWQEVu-OAlItXX7-KOM8NvtFTOlO3J0QvIIxyMwMrD6T_S2TBAE-KxAb2hsg6F393oIVy-K5yRlYU17_RqEEPgHR1UhQaUyEVySK989V-rcH-r-wWafcOaALTWc9bU0zvWEd6oQysd5iZmfh17vGXQsGc85pmtAqiADk2Ea2ELdWHmXqwlLoeZib9Bli4VKm3hcKqXm9hlxBc3uAgZA8bQ38aa12IYFJ6WbHL0Oij7waOdCrNuLAW1h8UTAb1hCSe-L"/>
+</div>
+<!-- Card Content -->
+<div class="flex w-full flex-col gap-1">
+<div class="flex items-center justify-between w-full">
+<h3 class="text-slate-900 dark:text-white text-lg font-bold leading-tight tracking-[-0.015em]">I am a Student</h3>
+<div class="size-6 rounded-full border-2 border-slate-300 dark:border-slate-500 peer-checked:group-[]:bg-primary peer-checked:group-[]:border-primary flex items-center justify-center transition-colors">
+<div class="size-2.5 rounded-full bg-slate-900 opacity-0 peer-checked:group-[]:opacity-100 transition-opacity"></div>
+</div>
+</div>
+<p class="text-slate-500 dark:text-text-secondary text-sm font-normal leading-normal">Browse menus, split bills &amp; order delivery to your dorm.</p>
+</div>
+</div>
+</label>
+<!-- Vendor Card -->
+<label class="group relative cursor-pointer">
+<input class="peer sr-only" name="role" type="radio" value="vendor"/>
+<div class="relative flex flex-col items-start justify-start rounded-xl p-4 transition-all duration-300 bg-white dark:bg-surface-dark border-2 border-transparent peer-checked:border-primary peer-checked:bg-primary/5 dark:peer-checked:bg-primary/10 shadow-sm hover:shadow-md">
+<!-- Card Image/Icon -->
+<div class="w-full h-32 mb-4 rounded-lg bg-cover bg-center overflow-hidden relative" data-alt="Modern food stall or small business setup">
+<div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+<div class="absolute bottom-3 left-3 bg-white/20 backdrop-blur-md p-2 rounded-lg text-white">
+<span class="material-symbols-outlined text-[24px]">storefront</span>
+</div>
+<img alt="Vendor counter with payment terminal" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCRnD-kKbCRBMgxj_Kqd-WuSRXyR0QIeuPSYoS78Y9jo8BxUgzgbcbvE4etGsV-vwbOocQ4IFVJlO_U8yXAU_YDqr1AwYWjsvERxyBfenVXBVUIFQIOokud3DrffEfjllcSrLwdSQLGGzMH0qnN-S8jUeYIuApIP6IqrhgRrCf3_8pdd1r0lD_aUQRwPzGVjFD8r5MwPY7hgj5CyTCsi13DIdJ3M2_5GwEQzsZLRtMRUbb3V0bxz_Rp8SQFez5yN9MxJdpvHcBcwEhG"/>
+</div>
+<!-- Card Content -->
+<div class="flex w-full flex-col gap-1">
+<div class="flex items-center justify-between w-full">
+<h3 class="text-slate-900 dark:text-white text-lg font-bold leading-tight tracking-[-0.015em]">I am a Vendor</h3>
+<div class="size-6 rounded-full border-2 border-slate-300 dark:border-slate-500 peer-checked:group-[]:bg-primary peer-checked:group-[]:border-primary flex items-center justify-center transition-colors">
+<div class="size-2.5 rounded-full bg-slate-900 opacity-0 peer-checked:group-[]:opacity-100 transition-opacity"></div>
+</div>
+</div>
+<p class="text-slate-500 dark:text-text-secondary text-sm font-normal leading-normal">Manage orders, track sales &amp; grow your business on campus.</p>
+</div>
+</div>
+</label>
+</div>
+</div>
+<!-- Sticky Footer Action -->
+<div class="fixed bottom-0 left-0 right-0 max-w-md mx-auto p-4 bg-gradient-to-t from-background-light via-background-light to-transparent dark:from-background-dark dark:via-background-dark z-20">
+<button class="w-full bg-primary hover:bg-[#25d36b] text-slate-900 text-base font-bold h-12 rounded-lg flex items-center justify-center gap-2 transition-transform active:scale-[0.98]">
+<span>Continue</span>
+<span class="material-symbols-outlined text-[20px] font-bold">arrow_forward</span>
+</button>
+</div>
+</div>
+</body></html>

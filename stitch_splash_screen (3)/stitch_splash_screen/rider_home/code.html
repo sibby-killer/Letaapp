@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Rider Home - MMUST Super App</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#2bee79",
+                        "primary-dim": "#1a5e3a",
+                        "background-light": "#f6f8f7",
+                        "background-dark": "#102217",
+                        "border-dark": "#326747",
+                        "text-secondary": "#92c9a8",
+                        "surface-dark": "#112218",
+                        "surface-highlight": "#193324",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display h-screen flex flex-col overflow-hidden text-white selection:bg-primary selection:text-surface-dark">
+<!-- Top Header -->
+<header class="flex items-center justify-between bg-surface-dark p-4 pb-3 border-b border-border-dark/30 z-20 shadow-md">
+<div class="flex items-center gap-3">
+<div class="relative">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10 ring-2 ring-primary/20" data-alt="Portrait of the delivery rider smiling" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBfK3iFjmpvVMPr9FiFZ6UQu8ROeWhytn0uDbrKoMbhGEiC1EuG5wvfqNgPPvPvBPvqBj8QAogWD-UIje2I2ZL7IWXayS9jvfiR1tP_rV0dhi5T9dBYzCXRpr8JBUCy7I0xIdCI1QVoKBXB_nrEyuPEw-fo0EbjYkSLut8Onr9c13oSwW0J8OnRHUY-XEj9VTFU8L-yjBpmlscBW_XxuVUbkY7qZllAmWdREYyZ7MCsK-lhKjtrIApcUzeN1NCQ87YUnVP8dplz8OCW");'>
+</div>
+<div class="absolute bottom-0 right-0 size-3 bg-primary rounded-full border-2 border-surface-dark"></div>
+</div>
+<div class="flex flex-col">
+<h2 class="text-white text-base font-bold leading-tight">Musa Juma</h2>
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-primary text-[14px]">star</span>
+<span class="text-text-secondary text-xs font-medium">4.9 Rating</span>
+</div>
+</div>
+</div>
+<!-- Online/Offline Toggle Switch -->
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox" value=""/>
+<div class="w-28 h-9 bg-surface-highlight peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[4px] after:start-[4px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-7 after:w-7 after:transition-all peer-checked:bg-primary/20 border border-border-dark"></div>
+<span class="absolute left-3 text-xs font-bold text-gray-400 peer-checked:hidden uppercase tracking-wider">Offline</span>
+<span class="absolute right-11 text-xs font-bold text-primary hidden peer-checked:block uppercase tracking-wider">Online</span>
+</label>
+</header>
+<!-- Main Content Area (Map + Overlays) -->
+<main class="flex-1 relative w-full overflow-hidden">
+<!-- Map Background -->
+<div class="absolute inset-0 z-0 bg-surface-highlight w-full h-full">
+<div class="w-full h-full bg-cover bg-center opacity-80" data-alt="Dark mode map of university campus with road networks" data-location="Kakamega, Kenya" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBA2u17DVTVcFfhzCUGPIwelRyWCUH-5sMoj5FpvhYsEYimXnAHTgiyaFUVSCElmXNN4WRwR9SzZ3SYxu-Jgxql6HMP0Z_5c_jl501guUe-b-fOkzxl1qWuytkIUTtuiSFiUyrcj379WMHYQR_fj-m-AG1LlQHtBIRWzD2a3o3v0JuaH1j6wasqJyLxd49jpA_nIpdiGnkla_n3uuYk4XiyFiNuJ8ocO-viql3KvuAiUiQhzCsviWnHVLjoKrBVNgDX7sUqcvVADvtV"); filter: grayscale(100%) invert(90%) hue-rotate(180deg) brightness(0.7) contrast(1.2);'>
+</div>
+<!-- Map Elements: Rider Pin -->
+<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col items-center justify-center">
+<div class="relative flex items-center justify-center">
+<div class="absolute size-24 bg-primary/20 rounded-full animate-ping"></div>
+<div class="absolute size-12 bg-primary/40 rounded-full"></div>
+<div class="relative z-10 bg-surface-dark p-1 rounded-full shadow-lg border-2 border-white">
+<span class="material-symbols-outlined text-primary text-2xl">two_wheeler</span>
+</div>
+</div>
+</div>
+<!-- Map Controls -->
+<div class="absolute right-4 bottom-52 flex flex-col gap-2 z-10">
+<button class="size-10 flex items-center justify-center bg-surface-dark rounded-full shadow-lg text-white active:bg-surface-highlight transition-colors border border-border-dark/50">
+<span class="material-symbols-outlined text-xl">my_location</span>
+</button>
+</div>
+</div>
+<!-- Top Overlay: Earnings Stats -->
+<div class="absolute top-4 left-4 right-4 z-10">
+<div class="flex gap-3">
+<!-- Earnings -->
+<div class="flex flex-1 flex-col justify-center rounded-xl border border-border-dark/50 bg-surface-dark/95 backdrop-blur-md p-3 shadow-lg">
+<div class="flex items-center gap-2 mb-1">
+<div class="bg-primary/20 p-1 rounded-md">
+<span class="material-symbols-outlined text-primary text-sm">payments</span>
+</div>
+<span class="text-text-secondary text-xs font-medium uppercase tracking-wide">Today's Earnings</span>
+</div>
+<p class="text-white text-2xl font-bold tracking-tight">KES 1,250</p>
+</div>
+<!-- Trips -->
+<div class="flex flex-1 flex-col justify-center rounded-xl border border-border-dark/50 bg-surface-dark/95 backdrop-blur-md p-3 shadow-lg">
+<div class="flex items-center gap-2 mb-1">
+<div class="bg-blue-500/20 p-1 rounded-md">
+<span class="material-symbols-outlined text-blue-400 text-sm">route</span>
+</div>
+<span class="text-text-secondary text-xs font-medium uppercase tracking-wide">Trips Done</span>
+</div>
+<p class="text-white text-2xl font-bold tracking-tight">8</p>
+</div>
+</div>
+</div>
+<!-- Bottom Overlay: Action Panel -->
+<div class="absolute bottom-4 left-4 right-4 z-10">
+<div class="@container">
+<div class="flex flex-col items-stretch gap-4 rounded-xl border border-border-dark bg-surface-dark p-5 shadow-[0_8px_30px_rgb(0,0,0,0.5)]">
+<!-- Status Header -->
+<div class="flex items-start justify-between">
+<div class="flex items-center gap-3">
+<div class="relative">
+<span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary opacity-75"></span>
+<div class="relative inline-flex size-3 rounded-full bg-primary"></div>
+</div>
+<div class="flex flex-col">
+<p class="text-white text-lg font-bold leading-tight">Waiting for orders...</p>
+<p class="text-text-secondary text-sm font-normal">Matching you with nearby vendors</p>
+</div>
+</div>
+<button class="text-text-secondary hover:text-white transition-colors">
+<span class="material-symbols-outlined">tune</span>
+</button>
+</div>
+<!-- AI Insight Block -->
+<div class="flex items-center gap-3 rounded-lg bg-surface-highlight/50 p-3 border border-border-dark/30">
+<span class="material-symbols-outlined text-primary text-xl">auto_awesome</span>
+<div class="flex-1">
+<p class="text-xs font-bold text-primary mb-0.5">AI INSIGHT</p>
+<p class="text-white text-sm leading-snug">High demand detected near <span class="text-white font-medium underline decoration-primary/50 underline-offset-2">Engineering Block</span>.</p>
+</div>
+<span class="material-symbols-outlined text-text-secondary text-lg rotate-180">arrow_back</span>
+</div>
+<!-- Primary Action -->
+<button class="group flex w-full cursor-pointer items-center justify-center gap-2 overflow-hidden rounded-lg h-12 px-4 bg-primary text-surface-dark text-base font-bold leading-normal transition-all active:scale-[0.98]">
+<span class="material-symbols-outlined group-hover:animate-bounce">map</span>
+<span class="truncate">View Hotspots Map</span>
+</button>
+</div>
+</div>
+</div>
+</main>
+<!-- Bottom Navigation -->
+<nav class="bg-surface-dark border-t border-border-dark pb-6 pt-2 px-6 shadow-[0_-4px_20px_rgba(0,0,0,0.2)] z-20">
+<div class="flex items-center justify-between">
+<a class="flex flex-col items-center gap-1 group" href="#">
+<div class="p-1.5 rounded-full bg-surface-highlight group-hover:bg-primary/20 transition-colors">
+<span class="material-symbols-outlined text-primary text-[24px]" data-fill="1">home</span>
+</div>
+<span class="text-[10px] font-medium text-white">Home</span>
+</a>
+<a class="flex flex-col items-center gap-1 group" href="#">
+<div class="p-1.5 rounded-full group-hover:bg-surface-highlight transition-colors">
+<span class="material-symbols-outlined text-text-secondary group-hover:text-white text-[24px]">account_balance_wallet</span>
+</div>
+<span class="text-[10px] font-medium text-text-secondary group-hover:text-white">Wallet</span>
+</a>
+<a class="flex flex-col items-center gap-1 group" href="#">
+<div class="p-1.5 rounded-full group-hover:bg-surface-highlight transition-colors">
+<span class="material-symbols-outlined text-text-secondary group-hover:text-white text-[24px]">history</span>
+</div>
+<span class="text-[10px] font-medium text-text-secondary group-hover:text-white">History</span>
+</a>
+<a class="flex flex-col items-center gap-1 group" href="#">
+<div class="p-1.5 rounded-full group-hover:bg-surface-highlight transition-colors">
+<span class="material-symbols-outlined text-text-secondary group-hover:text-white text-[24px]">person</span>
+</div>
+<span class="text-[10px] font-medium text-text-secondary group-hover:text-white">Profile</span>
+</a>
+</div>
+</nav>
+</body></html>

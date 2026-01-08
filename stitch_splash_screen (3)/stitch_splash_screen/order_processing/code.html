@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Order Processing</title>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#2bee79",
+                        "background-light": "#f6f8f7",
+                        "background-dark": "#102217",
+                    },
+                    fontFamily: {
+                        "display": ["Be Vietnam Pro", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom scrollbar hide for cleaner mobile look */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display antialiased text-slate-900 dark:text-white selection:bg-primary selection:text-black">
+<div class="relative flex h-full min-h-screen w-full max-w-md mx-auto flex-col overflow-hidden shadow-2xl bg-background-light dark:bg-background-dark">
+<!-- Top App Bar -->
+<header class="flex items-center px-4 py-4 justify-between bg-background-light dark:bg-background-dark sticky top-0 z-10">
+<button class="flex size-10 items-center justify-center rounded-full hover:bg-black/5 dark:hover:bg-white/10 transition-colors">
+<span class="material-symbols-outlined text-slate-900 dark:text-white" style="font-size: 24px;">arrow_back</span>
+</button>
+<div class="flex flex-col items-center">
+<h2 class="text-slate-900 dark:text-white text-lg font-bold leading-tight tracking-tight">Order #2291</h2>
+<span class="text-xs text-slate-500 dark:text-slate-400 font-medium">Customer: John Doe</span>
+</div>
+<button class="flex size-10 items-center justify-center rounded-full hover:bg-black/5 dark:hover:bg-white/10 transition-colors">
+<span class="material-symbols-outlined text-slate-900 dark:text-white" style="font-size: 24px;">help</span>
+</button>
+</header>
+<!-- Main Content Scroll Area -->
+<main class="flex-1 flex flex-col items-center w-full px-5 pt-2 pb-24 overflow-y-auto no-scrollbar">
+<!-- Status Badge -->
+<div class="mt-4 mb-6">
+<div class="inline-flex items-center gap-2 rounded-full border border-yellow-500/30 bg-yellow-500/10 px-4 py-1.5 backdrop-blur-sm">
+<span class="relative flex h-2.5 w-2.5">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-yellow-400 opacity-75"></span>
+<span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-yellow-500"></span>
+</span>
+<span class="text-xs font-bold uppercase tracking-wider text-yellow-600 dark:text-yellow-400">Preparing...</span>
+</div>
+</div>
+<!-- Timer Section -->
+<div class="flex flex-col items-center justify-center w-full py-6">
+<h3 class="text-slate-500 dark:text-slate-400 tracking-wide text-sm font-semibold uppercase mb-2">Time since order placed</h3>
+<!-- Large Timer Display -->
+<div class="flex items-baseline justify-center gap-1 font-display tabular-nums tracking-tighter text-slate-900 dark:text-white">
+<div class="text-[5rem] font-black leading-none text-slate-900 dark:text-white">04</div>
+<div class="text-4xl font-bold text-slate-400 dark:text-slate-600 animate-pulse">:</div>
+<div class="text-[5rem] font-black leading-none text-primary">23</div>
+</div>
+<div class="flex gap-20 text-xs font-medium text-slate-400 dark:text-slate-500 mt-2">
+<span>MINUTES</span>
+<span>SECONDS</span>
+</div>
+</div>
+<!-- Order Details Card -->
+<div class="w-full mt-8 space-y-4">
+<div class="flex items-center justify-between">
+<h4 class="text-slate-900 dark:text-white font-bold text-lg">Order Items</h4>
+<span class="text-slate-500 dark:text-slate-400 text-sm">3 Items</span>
+</div>
+<!-- Card Container -->
+<div class="rounded-xl bg-white dark:bg-[#1a2e23] p-1 shadow-sm border border-slate-100 dark:border-white/5">
+<!-- Item 1 -->
+<div class="flex items-start gap-4 p-3 border-b border-slate-100 dark:border-white/5 last:border-0">
+<div class="bg-slate-100 dark:bg-white/10 rounded-lg h-16 w-16 bg-cover bg-center shrink-0" data-alt="Grilled chicken wrap with vegetables" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDZEZdcAgx3fEeYuZzdm-7pME1jlGy2Zz6dTpszi_loZ15IUpfHq8o5LnLo9g4bdvcKQJGn-b-c7KmLIU62zx6QUa5KT7-4XJMSqT4x_66C5v7giluVdlS0hZh5xh8PLSGuCJSntVSDDcqlXFOQWH-_VSlPZqQ4V5tmpVpd7pB1xeUYZHcoRzL4qyguGHNFXJWnpMMbANUTLmsXYBwwvXQ0EjEf_XwnovGsApyYmINQ_n9K60829KNDB-1RA3lmBi_JbDSlTKO3KzAy");'></div>
+<div class="flex-1 min-w-0">
+<div class="flex justify-between items-start">
+<p class="text-slate-900 dark:text-white text-base font-bold truncate pr-2">Chicken Wrap</p>
+<p class="text-slate-500 dark:text-slate-400 text-sm font-medium">$5.00</p>
+</div>
+<p class="text-slate-500 dark:text-slate-400 text-xs mt-1">Extra spicy sauce</p>
+<div class="mt-2 inline-flex items-center px-2 py-0.5 rounded text-[10px] font-bold bg-slate-100 dark:bg-white/10 text-slate-600 dark:text-slate-300">
+                                x1
+                            </div>
+</div>
+</div>
+<!-- Item 2 -->
+<div class="flex items-start gap-4 p-3 border-b border-slate-100 dark:border-white/5 last:border-0">
+<div class="bg-slate-100 dark:bg-white/10 rounded-lg h-16 w-16 bg-cover bg-center shrink-0" data-alt="Classic sushi roll pieces" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDtRrE467be5NJhO_OG6Vi3YKkyT7fXzKx2Tp2otJ2VOoqeW6HD8Yhhx94gHCNK6BWEHG5SpcreeFMz2cb5UgG6vngi6_UlduGR-AKraFP-O-mXOrfPuTDyVE-93QquGZwjc8V-nhdG9_BiIy6flsHI70VIJqJwK9YXB2a7tvaXgKXzsuZMIXyo9V0xxk6Z9gQZD9Vv0zzTYOEnjMQJUiBKgsvVg1XooWK2f5TQxRRXJBx6NcxyJhMN4VMcEAT8yLLQakM8wnGl2SeZ");'></div>
+<div class="flex-1 min-w-0">
+<div class="flex justify-between items-start">
+<p class="text-slate-900 dark:text-white text-base font-bold truncate pr-2">California Roll</p>
+<p class="text-slate-500 dark:text-slate-400 text-sm font-medium">$8.50</p>
+</div>
+<p class="text-slate-500 dark:text-slate-400 text-xs mt-1">No avocado</p>
+<div class="mt-2 inline-flex items-center px-2 py-0.5 rounded text-[10px] font-bold bg-slate-100 dark:bg-white/10 text-slate-600 dark:text-slate-300">
+                                x2
+                            </div>
+</div>
+</div>
+<!-- Item 3 -->
+<div class="flex items-start gap-4 p-3 border-b border-slate-100 dark:border-white/5 last:border-0">
+<div class="bg-slate-100 dark:bg-white/10 rounded-lg h-16 w-16 bg-cover bg-center shrink-0" data-alt="Cold soda bottle with condensation" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuALkiVkcfKUHZ4BPXg2_pU0xINdqJYlKYRhAjTcOkXpp3qxSqt4Clp4dIWgt9ma3UfHkMDqa8Bt7MsELVLW9jwyhYL1k4kgDxLu308Fnpu27Bt6iz-igknFc1xivqvKNxuTvL9el9jcCQ6J2YmrJlwfNk_e1hfkMXCQHpF4mbJlunTzv4A5AgF5qbCHY720QGJXJDe14__eL7QXbi1xLCUqAYb2IuVerPaICmPbZ2JJ8U3wxRuMSAuYpnkGFNrD6IL6viB0k5SZZrZb");'></div>
+<div class="flex-1 min-w-0">
+<div class="flex justify-between items-start">
+<p class="text-slate-900 dark:text-white text-base font-bold truncate pr-2">Cola Zero</p>
+<p class="text-slate-500 dark:text-slate-400 text-sm font-medium">$2.00</p>
+</div>
+<div class="mt-2 inline-flex items-center px-2 py-0.5 rounded text-[10px] font-bold bg-slate-100 dark:bg-white/10 text-slate-600 dark:text-slate-300">
+                                x1
+                            </div>
+</div>
+</div>
+</div>
+</div>
+<!-- Order Notes -->
+<div class="w-full mt-6">
+<div class="bg-yellow-50 dark:bg-yellow-900/20 border border-yellow-200 dark:border-yellow-700/30 rounded-lg p-3 flex gap-3">
+<span class="material-symbols-outlined text-yellow-600 dark:text-yellow-500 shrink-0" style="font-size: 20px;">info</span>
+<p class="text-sm text-yellow-800 dark:text-yellow-200">
+<span class="font-bold">Note from customer:</span> Please include extra napkins.
+                    </p>
+</div>
+</div>
+</main>
+<!-- Bottom Action Area -->
+<div class="absolute bottom-0 left-0 w-full bg-background-light/95 dark:bg-background-dark/95 backdrop-blur-md border-t border-slate-200 dark:border-white/10 p-5 z-20">
+<div class="flex flex-col gap-3">
+<!-- AI Feedback (Initially hidden/subtle, represented here as static context) -->
+<div class="flex items-center justify-center gap-2 text-slate-400 dark:text-slate-500 text-xs mb-1 opacity-0 h-0 overflow-hidden group-[.scanning]:h-auto group-[.scanning]:opacity-100 transition-all">
+<span class="material-symbols-outlined animate-spin" style="font-size: 14px;">sync</span>
+<span>AI Logistics: Scanning neighborhood...</span>
+</div>
+<button class="w-full bg-primary hover:bg-[#25cc68] active:scale-[0.98] transition-all h-14 rounded-lg flex items-center justify-center gap-2 shadow-[0_0_20px_rgba(43,238,121,0.25)] group relative overflow-hidden">
+<div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full animate-[shimmer_2s_infinite]"></div>
+<span class="material-symbols-outlined text-background-dark font-bold" style="font-size: 24px;">check_circle</span>
+<span class="text-background-dark text-lg font-bold tracking-wide uppercase">Mark Food Ready</span>
+</button>
+</div>
+</div>
+</div>
+<style>
+        @keyframes shimmer {
+            100% {
+                transform: translateX(100%);
+            }
+        }
+    </style>
+</body></html>

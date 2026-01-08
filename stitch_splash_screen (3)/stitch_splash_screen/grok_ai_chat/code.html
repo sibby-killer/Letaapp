@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Grok AI Chat - MMUST Super App</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Config -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#2bee79",
+                        "primary-dark": "#24c965",
+                        "background-light": "#f6f8f7",
+                        "background-dark": "#102217",
+                        "surface-dark": "#1a3023",
+                        "surface-light": "#ffffff",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "2xl": "1rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom scrollbar for subtle look */
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-gray-900 dark:text-gray-100 flex flex-col h-screen overflow-hidden">
+<!-- Header -->
+<header class="flex items-center justify-between p-4 bg-surface-light dark:bg-surface-dark border-b border-gray-200 dark:border-white/5 z-20 shadow-sm relative shrink-0">
+<button class="flex items-center justify-center size-10 rounded-full hover:bg-black/5 dark:hover:bg-white/10 transition-colors text-gray-600 dark:text-gray-300">
+<span class="material-symbols-outlined">arrow_back_ios_new</span>
+</button>
+<div class="flex flex-col items-center">
+<h1 class="text-lg font-bold tracking-tight">Grok AI</h1>
+<div class="flex items-center gap-1.5">
+<span class="relative flex h-2 w-2">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+<span class="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
+</span>
+<span class="text-xs font-medium text-primary">Online</span>
+</div>
+</div>
+<button class="flex items-center justify-center size-10 rounded-full hover:bg-black/5 dark:hover:bg-white/10 transition-colors text-gray-600 dark:text-gray-300">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</header>
+<!-- Chat Stream -->
+<main class="flex-1 overflow-y-auto p-4 space-y-6 hide-scrollbar relative pb-32" id="chat-container">
+<!-- Timestamp -->
+<div class="flex justify-center">
+<span class="text-xs font-medium text-gray-400 dark:text-gray-500 bg-gray-100 dark:bg-white/5 px-3 py-1 rounded-full">Today 12:42 PM</span>
+</div>
+<!-- Grok Message (Intro) -->
+<div class="flex items-end gap-3 max-w-[85%]">
+<div class="size-8 rounded-full overflow-hidden shrink-0 border border-white/10 shadow-sm">
+<img class="w-full h-full object-cover" data-alt="Futuristic AI robot avatar icon" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDFwv7XOewSfAB0e297b9z42GQ4i1c6LmeN6RXAqJd_xAmcAYmDuUZTQDJds9Vx86nrNvmLIFalkJnSx6ZB5l4gGyfiFnly7bH_Hs5-vrE1EQPiZyrGlAUaVyXtNi3Y4uSRohXy7Aa9n0Hnd7kPoGBxiw8Trpsf4awdBIC_gGVrQ351n-Q8VAgEW_h3SB_tNc5v78bxMgRcBGVUQJneCHMKh46GT6zx0cGVsBIDOmMwgZgakFN0ge_6Un8iwSykwkP6upBl2wLLTk70"/>
+</div>
+<div class="flex flex-col gap-1">
+<span class="text-xs text-gray-500 dark:text-gray-400 ml-1">Grok AI</span>
+<div class="p-3.5 bg-gray-200 dark:bg-surface-dark rounded-2xl rounded-bl-none text-sm leading-relaxed shadow-sm">
+<p>Hi! I'm Grok. I can help you find the best food around MMUST. What's your budget today?</p>
+</div>
+</div>
+</div>
+<!-- User Message -->
+<div class="flex items-end justify-end gap-3 w-full">
+<div class="flex flex-col gap-1 items-end max-w-[85%]">
+<div class="p-3.5 bg-primary text-background-dark rounded-2xl rounded-br-none text-sm font-medium leading-relaxed shadow-md">
+<p>I have 200 bob, what can I eat?</p>
+</div>
+<span class="text-xs text-gray-400 mr-1 flex items-center gap-1">
+                    12:44 PM
+                    <span class="material-symbols-outlined text-[14px]">done_all</span>
+</span>
+</div>
+</div>
+<!-- Grok Message (Response Text) -->
+<div class="flex items-end gap-3 max-w-[85%]">
+<div class="size-8 rounded-full overflow-hidden shrink-0 border border-white/10 shadow-sm">
+<img class="w-full h-full object-cover" data-alt="Futuristic AI robot avatar icon" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBCntoZZVMwrcyxvqMWqfOYyx34iwqOk-H_vEzayUh4_hywo3U4teq4cl1gZ2ycwA8oK43iqPsBJoGbaujCQUHOyaD6hs4xiSiGpgf435dDgR74Cx2IkRSZaxZseX59wm-2r_dhC902w7WO_q74tPb_HPxFqoOjjgwSPat_PdIYnOJsUDLyPZrqDRt9m5Rysz9ih_O8P2sdgfHhuIhr3JBQW8hJQIEqIUOggRax7Piyy46jDOy9oEJlfiNVLExTkmmF_8MwGtXxkQfs"/>
+</div>
+<div class="flex flex-col gap-1">
+<span class="text-xs text-gray-500 dark:text-gray-400 ml-1">Grok AI</span>
+<div class="p-3.5 bg-gray-200 dark:bg-surface-dark rounded-2xl rounded-bl-none text-sm leading-relaxed shadow-sm">
+<p>With 200 KES, here are some great options nearby:</p>
+</div>
+</div>
+</div>
+<!-- Grok Message (Rich Card Carousel) -->
+<div class="pl-11 w-full overflow-x-auto hide-scrollbar">
+<div class="flex gap-4 pr-4 w-max">
+<!-- Card 1 -->
+<div class="w-[280px] bg-white dark:bg-surface-dark rounded-xl overflow-hidden shadow-md border border-gray-100 dark:border-white/5 flex flex-col group">
+<div class="h-32 w-full bg-gray-700 relative overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Delicious spicy rice pilau with beef chunks" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBkOeX7SW5zVYGDJVXLos73wL6dCJ72_na3PQ_AvnxehQIQrjxhv3SvQprlv71vOdkNPvqeq5xJQ7eSd1dX11qF9tKly2jFCUTZzSg6WUJaZ6NUSJrUdlkOW035JlG2IgfyJFUUxqE3tZGbMeIRk0mhkdZdcTuVxYSMsY3lAc7ISznFhzCKxUoGyhqsJiLMGNIsFfOEvIaybgbHCc-BhWjs1SU_51ew7PFVEWbdhxTPJWgFlyH29x8kbhizKfq-g32F5fNqQwfSPJIC"/>
+<div class="absolute top-2 right-2 bg-black/60 backdrop-blur-sm px-2 py-1 rounded text-xs font-bold text-white flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px] text-primary">schedule</span> 15m
+                        </div>
+</div>
+<div class="p-3 flex flex-col gap-2 flex-1">
+<div class="flex justify-between items-start">
+<div>
+<h3 class="font-bold text-gray-900 dark:text-white leading-tight">Pilau &amp; Beef</h3>
+<p class="text-xs text-gray-500 dark:text-gray-400 mt-0.5">Kwa Mama Ken</p>
+</div>
+<span class="text-primary font-bold bg-primary/10 px-2 py-1 rounded text-sm">180 KES</span>
+</div>
+<button class="mt-auto w-full py-2 bg-primary hover:bg-primary-dark text-background-dark font-bold text-sm rounded-lg flex items-center justify-center gap-2 transition-colors">
+                            Order Now
+                            <span class="material-symbols-outlined text-[16px]">shopping_bag</span>
+</button>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="w-[280px] bg-white dark:bg-surface-dark rounded-xl overflow-hidden shadow-md border border-gray-100 dark:border-white/5 flex flex-col group">
+<div class="h-32 w-full bg-gray-700 relative overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Kenyan Chapati with beans curry stew" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA4MwcLJqBKa2YbIQuDQnfOm4PgHveK4cSxooYQWS5nap6P8_8Q59Su67DjwDjfu1eiWkjLtSIHnJ40hVbbRe3qSQDLjNXkmVBtOuRX82bhJy21qZhzEnOzKy1WKzvxgXWGEV-bL2wh5-22msbH74mJRs0wLV19SNCGCxCxzwr22hYBWPvDqbPai4kyMBiTiUorXLu85zhTXagSPsvde-jr1gyYyBShIBz9RWAkDR41hrQ2WO-RwxTfscZVTFGTuXEf6dG5_AVYeiHG"/>
+<div class="absolute top-2 right-2 bg-black/60 backdrop-blur-sm px-2 py-1 rounded text-xs font-bold text-white flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px] text-primary">schedule</span> 10m
+                        </div>
+</div>
+<div class="p-3 flex flex-col gap-2 flex-1">
+<div class="flex justify-between items-start">
+<div>
+<h3 class="font-bold text-gray-900 dark:text-white leading-tight">Chapati &amp; Beans</h3>
+<p class="text-xs text-gray-500 dark:text-gray-400 mt-0.5">Student Center Mess</p>
+</div>
+<span class="text-primary font-bold bg-primary/10 px-2 py-1 rounded text-sm">120 KES</span>
+</div>
+<button class="mt-auto w-full py-2 bg-primary hover:bg-primary-dark text-background-dark font-bold text-sm rounded-lg flex items-center justify-center gap-2 transition-colors">
+                            Order Now
+                            <span class="material-symbols-outlined text-[16px]">shopping_bag</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Typing Indicator -->
+<div class="flex items-end gap-3 max-w-[85%] mt-2">
+<div class="size-8 rounded-full overflow-hidden shrink-0 border border-white/10 opacity-50">
+<img class="w-full h-full object-cover grayscale" data-alt="Futuristic AI robot avatar icon" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAZsOZHzlKC2er-YNHQMafW5cseu95e42qqVSl34-v_UrwVgDjUO6NAjrBxwnVfYLjpv4UN0hRVQYzFxzA9bkokZXrVbyslvvyMcSIthWF5S30aZZY6TgN6Ntv4ez3plwfEyLwflSXPJyadfsP7X_JX83SCh4RxQIm6mEEpSENARF_Wgcp6SrfRsUt0pklQFy2VGcjmtFjdYiMNh5UROueTILmFEgpvWXtaCsXiU8nLoaAMI9aTq4WN9TQ4t4Gh9bdoPisZtV55GZ7j"/>
+</div>
+<div class="p-3 bg-gray-200 dark:bg-surface-dark rounded-2xl rounded-bl-none flex items-center gap-1">
+<div class="w-1.5 h-1.5 bg-gray-400 rounded-full animate-bounce"></div>
+<div class="w-1.5 h-1.5 bg-gray-400 rounded-full animate-bounce delay-75"></div>
+<div class="w-1.5 h-1.5 bg-gray-400 rounded-full animate-bounce delay-150"></div>
+</div>
+</div>
+</main>
+<!-- Footer Input Area -->
+<footer class="bg-surface-light dark:bg-surface-dark border-t border-gray-200 dark:border-white/5 p-4 z-20 absolute bottom-0 w-full shrink-0 safe-area-bottom">
+<!-- Quick Prompts -->
+<div class="flex gap-2 overflow-x-auto hide-scrollbar mb-3 pb-1">
+<button class="whitespace-nowrap px-3 py-1.5 bg-gray-100 dark:bg-white/5 border border-gray-200 dark:border-white/10 rounded-full text-xs font-medium text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-white/10 transition-colors">
+                Fast Delivery ⚡️
+            </button>
+<button class="whitespace-nowrap px-3 py-1.5 bg-gray-100 dark:bg-white/5 border border-gray-200 dark:border-white/10 rounded-full text-xs font-medium text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-white/10 transition-colors">
+                Under 150 bob
+            </button>
+<button class="whitespace-nowrap px-3 py-1.5 bg-gray-100 dark:bg-white/5 border border-gray-200 dark:border-white/10 rounded-full text-xs font-medium text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-white/10 transition-colors">
+                Ugali Greens
+            </button>
+<button class="whitespace-nowrap px-3 py-1.5 bg-gray-100 dark:bg-white/5 border border-gray-200 dark:border-white/10 rounded-full text-xs font-medium text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-white/10 transition-colors">
+                Smocha
+            </button>
+</div>
+<!-- Input Bar -->
+<div class="flex items-center gap-2">
+<button class="flex items-center justify-center size-10 rounded-full bg-gray-100 dark:bg-white/5 text-gray-500 hover:text-primary transition-colors shrink-0">
+<span class="material-symbols-outlined">add</span>
+</button>
+<div class="flex-1 relative">
+<input class="w-full bg-gray-100 dark:bg-black/20 border-none rounded-full py-3 pl-4 pr-10 text-sm text-gray-900 dark:text-white placeholder-gray-500 focus:ring-2 focus:ring-primary/50 focus:bg-white dark:focus:bg-black/40 transition-all shadow-inner" placeholder="Ask Grok..." type="text"/>
+<button class="absolute right-2 top-1/2 -translate-y-1/2 p-1 text-gray-400 hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-[20px]">mic</span>
+</button>
+</div>
+<button class="flex items-center justify-center size-10 rounded-full bg-primary text-background-dark hover:bg-primary-dark transition-all shadow-[0_0_15px_rgba(43,238,121,0.3)] shrink-0 group">
+<span class="material-symbols-outlined group-active:translate-x-0.5 group-active:-translate-y-0.5 transition-transform">send</span>
+</button>
+</div>
+</footer>
+</body></html>

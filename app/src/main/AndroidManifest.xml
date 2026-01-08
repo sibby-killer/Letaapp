@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- Permissions -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" 
+        android:maxSdkVersion="32"
+        tools:ignore="ScopedStorage" />
+
+    <application
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.LetaApp">
+        
+        <!-- Splash Screen - LAUNCHER -->
+        <activity
+            android:name=".SplashActivity"
+            android:exported="true"
+            android:theme="@style/Theme.LetaApp">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!-- Authentication Activity -->
+        <activity
+            android:name=".AuthActivity"
+            android:exported="false"
+            android:theme="@style/Theme.LetaApp" />
+
+        <!-- Select Role Activity -->
+        <activity
+            android:name=".SelectRoleActivity"
+            android:exported="false"
+            android:theme="@style/Theme.LetaApp" />
+
+        <!-- Student Home Activity -->
+        <activity
+            android:name=".StudentHomeActivity"
+            android:exported="false"
+            android:theme="@style/Theme.LetaApp" />
+
+        <!-- Vendor Dashboard Activity -->
+        <activity
+            android:name=".VendorDashboardActivity"
+            android:exported="false"
+            android:theme="@style/Theme.LetaApp" />
+
+        <!-- Rider Home Activity -->
+        <activity
+            android:name=".RiderHomeActivity"
+            android:exported="false"
+            android:theme="@style/Theme.LetaApp" />
+
+        <!-- MainActivity (Legacy - can be removed later) -->
+        <activity
+            android:name=".MainActivity"
+            android:exported="false" />
+
+        <!-- Cart and Checkout Flow -->
+        <activity
+            android:name=".CartActivity"
+            android:exported="false"
+            android:theme="@style/Theme.LetaApp" />
+
+        <activity
+            android:name=".CheckoutActivity"
+            android:exported="false"
+            android:theme="@style/Theme.LetaApp" />
+
+        <activity
+            android:name=".TrackOrderActivity"
+            android:exported="false"
+            android:theme="@style/Theme.LetaApp" />
+
+        <!-- Referral System -->
+        <activity
+            android:name=".ReferralHubActivity"
+            android:exported="false"
+            android:theme="@style/Theme.LetaApp" />
+
+        <!-- Vendor Features -->
+        <activity
+            android:name=".VendorProfileActivity"
+            android:exported="false"
+            android:theme="@style/Theme.LetaApp" />
+
+        <activity
+            android:name=".MenuManagerActivity"
+            android:exported="false"
+            android:theme="@style/Theme.LetaApp" />
+
+        <activity
+            android:name=".OrderProcessingActivity"
+            android:exported="false"
+            android:theme="@style/Theme.LetaApp" />
+
+        <!-- Rider Features -->
+        <activity
+            android:name=".ActiveDeliveryActivity"
+            android:exported="false"
+            android:theme="@style/Theme.LetaApp" />
+
+        <activity
+            android:name=".GrokAIChatActivity"
+            android:exported="false"
+            android:theme="@style/Theme.LetaApp" />
+
+        <activity
+            android:name=".RiderRecruitmentActivity"
+            android:exported="false"
+            android:theme="@style/Theme.LetaApp" />
+    </application>
+
+</manifest>

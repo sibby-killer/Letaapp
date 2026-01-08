@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_dark">
+
+    <!-- Header -->
+    <LinearLayout
+        android:id="@+id/topBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:orientation="horizontal"
+        android:padding="16dp"
+        android:background="@color/surface_dark"
+        android:gravity="center_vertical"
+        android:elevation="4dp">
+
+        <ImageButton
+            android:id="@+id/btnBack"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:src="@android:drawable/ic_menu_revert"
+            android:tint="@color/white"
+            android:contentDescription="@string/log_in" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_marginStart="12dp">
+
+            <ImageView
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:src="@android:drawable/ic_dialog_info"
+                android:tint="@color/primary"
+                android:contentDescription="@string/log_in" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:text="Grok AI Assistant"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <ImageButton
+            android:id="@+id/btnMore"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:src="@android:drawable/ic_menu_more"
+            android:tint="@color/white"
+            android:contentDescription="@string/log_in" />
+    </LinearLayout>
+
+    <!-- Chat Messages RecyclerView -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvChatMessages"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/topBar"
+        android:layout_above="@id/bottomInputSection"
+        android:padding="16dp"
+        android:clipToPadding="false" />
+
+    <!-- Suggested Actions (Initially visible) -->
+    <HorizontalScrollView
+        android:id="@+id/suggestedActions"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/bottomInputSection"
+        android:scrollbars="none"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:paddingBottom="8dp">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipRouteOptimization"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Route Optimization"
+                android:layout_marginEnd="8dp"
+                app:chipBackgroundColor="@color/surface_dark"
+                app:chipStrokeColor="@color/primary"
+                app:chipStrokeWidth="1dp" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipEarningsInsight"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Earnings Insight"
+                android:layout_marginEnd="8dp"
+                app:chipBackgroundColor="@color/surface_dark"
+                app:chipStrokeColor="@color/primary"
+                app:chipStrokeWidth="1dp" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipHotspots"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Find Hotspots"
+                android:layout_marginEnd="8dp"
+                app:chipBackgroundColor="@color/surface_dark"
+                app:chipStrokeColor="@color/primary"
+                app:chipStrokeWidth="1dp" />
+        </LinearLayout>
+    </HorizontalScrollView>
+
+    <!-- Bottom Input Section -->
+    <LinearLayout
+        android:id="@+id/bottomInputSection"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal"
+        android:background="@color/surface_dark"
+        android:padding="12dp"
+        android:gravity="center_vertical"
+        android:elevation="8dp">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etMessage"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_weight="1"
+            android:layout_marginEnd="8dp"
+            android:background="@color/surface_highlight"
+            android:hint="Ask Grok anything..."
+            android:textColor="@color/white"
+            android:textColorHint="@color/text_secondary"
+            android:padding="12dp"
+            android:maxLines="3" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fabSend"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:fabSize="mini"
+            android:src="@android:drawable/ic_menu_send"
+            app:tint="@color/black"
+            app:backgroundTint="@color/primary"
+            android:contentDescription="@string/log_in" />
+    </LinearLayout>
+</RelativeLayout>

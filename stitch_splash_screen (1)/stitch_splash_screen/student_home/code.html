@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Student Home</title>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#2bee79",
+              "background-light": "#f6f8f7",
+              "background-dark": "#102217",
+              "card-dark": "#162e21",
+            },
+            fontFamily: {
+              "display": ["Inter", "sans-serif"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        /* Custom scrollbar hiding */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-white antialiased min-h-screen relative font-display pb-20">
+<!-- Header Section -->
+<div class="px-4 pt-6 pb-2 sticky top-0 z-20 bg-background-light/95 dark:bg-background-dark/95 backdrop-blur-sm transition-colors duration-200">
+<!-- Top Bar: Avatar, Greeting, Location -->
+<div class="flex items-center justify-between mb-6">
+<div class="flex items-center gap-3">
+<div class="h-10 w-10 rounded-full bg-slate-200 dark:bg-slate-700 overflow-hidden border border-slate-300 dark:border-slate-600">
+<img alt="User Profile" class="h-full w-full object-cover" data-alt="Portrait of a young male student" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCOW5fWJjT0RNq6LwRkIdXx_Zz4eCGqX3X3S1ZbZqawddyQZUvrDiMohvzQ3mlJuVzJP71weZnXA1Qb8h5021cZXWbWetb1wqDH0SXbOk9gbuI50fKPGaBa6cEiij1ByOAlXDi_thZlh9w6DJwU9jGQucvSg6cvrKifcaRXoKx6WQMtHbXsPoTD_VmaKevyq5sTI-Ky4MCYomLyjL-1qbue3KYiZ0vshW03LGhMZrVbQbuqcxFK25NkMntjEvgAoh7wW4rErFpyYIuq"/>
+</div>
+<div class="flex flex-col">
+<span class="text-xs text-slate-500 dark:text-slate-400 font-medium">Good Evening</span>
+<h2 class="text-sm font-bold leading-tight">Alex M.</h2>
+</div>
+</div>
+<div class="flex items-center bg-white dark:bg-card-dark rounded-full px-3 py-1.5 border border-slate-200 dark:border-slate-700 shadow-sm cursor-pointer hover:bg-slate-50 dark:hover:bg-slate-800 transition">
+<span class="material-symbols-outlined text-primary text-[18px] mr-1">location_on</span>
+<span class="text-xs font-semibold pr-1">Hall 4</span>
+<span class="material-symbols-outlined text-slate-400 text-[16px]">expand_more</span>
+</div>
+</div>
+<!-- Wallet Widget -->
+<div class="w-full bg-gradient-to-r from-[#1b3828] to-[#234832] dark:from-[#1b3828] dark:to-[#234832] bg-white rounded-xl p-4 shadow-lg border border-slate-100 dark:border-none relative overflow-hidden group">
+<div class="absolute right-0 top-0 h-full w-1/2 bg-gradient-to-l from-primary/5 to-transparent"></div>
+<div class="relative z-10 flex justify-between items-end">
+<div>
+<p class="text-slate-500 dark:text-slate-400 text-xs font-medium mb-1 uppercase tracking-wider">Wallet Balance</p>
+<div class="flex items-baseline gap-1">
+<span class="text-slate-900 dark:text-white text-2xl font-bold tracking-tight">KES 450</span>
+<span class="text-xs text-slate-400 font-medium">.00</span>
+</div>
+</div>
+<button class="flex items-center gap-1 bg-primary text-background-dark px-3 py-1.5 rounded-lg text-sm font-bold hover:bg-green-400 transition shadow-lg shadow-green-900/20">
+<span class="material-symbols-outlined text-[18px]">add_circle</span>
+                    Top Up
+                </button>
+</div>
+</div>
+</div>
+<!-- Search Bar -->
+<div class="px-4 py-2">
+<label class="relative flex items-center w-full h-12 rounded-xl focus-within:ring-2 focus-within:ring-primary/50 transition-all shadow-sm">
+<div class="absolute left-4 flex items-center justify-center text-slate-400 pointer-events-none">
+<span class="material-symbols-outlined">search</span>
+</div>
+<input class="w-full h-full pl-12 pr-4 rounded-xl bg-white dark:bg-card-dark text-slate-900 dark:text-white placeholder:text-slate-400 border-none focus:ring-0 text-base" placeholder="What are you craving?" type="text"/>
+</label>
+</div>
+<!-- Categories -->
+<div class="py-4">
+<div class="flex gap-3 px-4 overflow-x-auto no-scrollbar pb-2">
+<!-- Active Category -->
+<button class="flex flex-col items-center gap-2 min-w-[72px] group">
+<div class="w-16 h-16 rounded-2xl bg-primary text-background-dark flex items-center justify-center shadow-lg shadow-green-500/20 transition-transform group-active:scale-95">
+<span class="material-symbols-outlined text-[32px]">bakery_dining</span>
+</div>
+<span class="text-xs font-semibold text-slate-900 dark:text-white">Breakfast</span>
+</button>
+<button class="flex flex-col items-center gap-2 min-w-[72px] group">
+<div class="w-16 h-16 rounded-2xl bg-white dark:bg-card-dark text-slate-500 dark:text-slate-400 flex items-center justify-center border border-slate-200 dark:border-transparent transition-transform group-active:scale-95">
+<span class="material-symbols-outlined text-[32px]">lunch_dining</span>
+</div>
+<span class="text-xs font-medium text-slate-500 dark:text-slate-400">Lunch</span>
+</button>
+<button class="flex flex-col items-center gap-2 min-w-[72px] group">
+<div class="w-16 h-16 rounded-2xl bg-white dark:bg-card-dark text-slate-500 dark:text-slate-400 flex items-center justify-center border border-slate-200 dark:border-transparent transition-transform group-active:scale-95">
+<span class="material-symbols-outlined text-[32px]">cookie</span>
+</div>
+<span class="text-xs font-medium text-slate-500 dark:text-slate-400">Snacks</span>
+</button>
+<button class="flex flex-col items-center gap-2 min-w-[72px] group">
+<div class="w-16 h-16 rounded-2xl bg-white dark:bg-card-dark text-slate-500 dark:text-slate-400 flex items-center justify-center border border-slate-200 dark:border-transparent transition-transform group-active:scale-95">
+<span class="material-symbols-outlined text-[32px]">local_cafe</span>
+</div>
+<span class="text-xs font-medium text-slate-500 dark:text-slate-400">Drinks</span>
+</button>
+<button class="flex flex-col items-center gap-2 min-w-[72px] group">
+<div class="w-16 h-16 rounded-2xl bg-white dark:bg-card-dark text-slate-500 dark:text-slate-400 flex items-center justify-center border border-slate-200 dark:border-transparent transition-transform group-active:scale-95">
+<span class="material-symbols-outlined text-[32px]">grocery</span>
+</div>
+<span class="text-xs font-medium text-slate-500 dark:text-slate-400">Grocer</span>
+</button>
+</div>
+</div>
+<!-- Vendor List -->
+<div class="px-4 pb-24">
+<div class="flex items-center justify-between mb-4 mt-2">
+<h3 class="text-lg font-bold text-slate-900 dark:text-white">Vendors Near Hall 4</h3>
+<button class="text-primary text-sm font-medium">See All</button>
+</div>
+<div class="flex flex-col gap-4">
+<!-- Vendor Card 1 (Open) -->
+<div class="group bg-white dark:bg-card-dark rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all border border-slate-100 dark:border-slate-800/50">
+<div class="h-32 w-full relative bg-gray-200">
+<img alt="Plate of fries and chicken" class="w-full h-full object-cover" data-alt="Golden crispy fries and fried chicken on a plate" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC_FciKah4ZsDM7dqotSQm-CQOlak8cfuH_Mcl-cbbufZFwHNTrQl-kzecptMNW31CzqIpeBwj2VmGO6Al555IRO1psy3h8DgNxQtsTvk1Z0qSvBp-txltdtxz41NqA6kyf_iwl_RJyG9pJIWMgoj-1aDSkGAdocmBN0CvQiiBv4vnOxPgGsKnx8dhHKF9CcQoBIX_tKawH_KwwkWHBC47Ir2uOO81N3wu4lq7CgH-nurzn2psMUulQlzIcj-WHu7sTPcZcrghCs_vO"/>
+<div class="absolute top-2 right-2 bg-background-dark/80 backdrop-blur-md px-2 py-1 rounded-lg flex items-center gap-1">
+<span class="material-symbols-outlined text-yellow-400 text-[14px] fill-1">star</span>
+<span class="text-white text-xs font-bold">4.8</span>
+</div>
+</div>
+<div class="p-3">
+<div class="flex justify-between items-start mb-1">
+<h4 class="text-base font-bold text-slate-900 dark:text-white">Kefco Fries</h4>
+<span class="text-primary text-xs font-bold px-2 py-0.5 rounded-full bg-primary/10 border border-primary/20">Open</span>
+</div>
+<div class="flex items-center gap-3 text-xs text-slate-500 dark:text-slate-400">
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">schedule</span>
+<span>15 mins</span>
+</div>
+<span>•</span>
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">local_shipping</span>
+<span>KES 50</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Vendor Card 2 (Open) -->
+<div class="group bg-white dark:bg-card-dark rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all border border-slate-100 dark:border-slate-800/50">
+<div class="h-32 w-full relative bg-gray-200">
+<img alt="Pizza with cheese and basil" class="w-full h-full object-cover" data-alt="Close up of a fresh pizza slice" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB6AC_Q7qkLXVBZigi7U5vl4U5uwhRAa_mqlKXK2QzWCCymqKa3wtzspyD_fr9G_EjI72dPhRRp95A33KMlY-xos22Rd7gh3qGB5oRPtzHkAl61q0ET5W4wcRYpFY6GHWr75Fo-ClS-BQVdDaxkB64kVgv0Az0E1eJF-omTtEJk3sDLsMSIrr-gK2wrkAQW-StiCPTIK2craXwk5qRfa8lIYh8OvcvJZ9SPDQipLFcr6DFtcfH2Bo-Q1A2YG50DTAVGBbaRpdR43Lhj"/>
+<div class="absolute top-2 right-2 bg-background-dark/80 backdrop-blur-md px-2 py-1 rounded-lg flex items-center gap-1">
+<span class="material-symbols-outlined text-yellow-400 text-[14px] fill-1">star</span>
+<span class="text-white text-xs font-bold">4.5</span>
+</div>
+</div>
+<div class="p-3">
+<div class="flex justify-between items-start mb-1">
+<h4 class="text-base font-bold text-slate-900 dark:text-white">Mama Oliech</h4>
+<span class="text-primary text-xs font-bold px-2 py-0.5 rounded-full bg-primary/10 border border-primary/20">Open</span>
+</div>
+<div class="flex items-center gap-3 text-xs text-slate-500 dark:text-slate-400">
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">schedule</span>
+<span>25 mins</span>
+</div>
+<span>•</span>
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">local_shipping</span>
+<span>KES 30</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Vendor Card 3 (Closed) -->
+<div class="group bg-white dark:bg-card-dark rounded-xl overflow-hidden shadow-sm opacity-60 grayscale-[80%] hover:grayscale-0 hover:opacity-100 transition-all border border-slate-100 dark:border-slate-800/50">
+<div class="h-32 w-full relative bg-gray-200">
+<img alt="Cafe interior with coffee" class="w-full h-full object-cover" data-alt="Cozy cafe interior with warm lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBrQpC0sbvCj8lfxZnZ7i7ogaPGILi4mJzvdZkCsM4MMT4mBR38lqALckKp4PPJvF5DOxck2E_O_4zFa5lnj9DAQKNVYUEo_cyPf7krqYN3J9TdcZZHCcyY1Q2B6Yu8ekp_JWX15GUMNlGW-kAbJxFU5hRgejdAV5lCVak413f5KFuWMEhw8qyhavf_9H6o_NHH56q8eiOnuBisQll0b_e6r3wVGqVLK_go9S9_Xhihcy_0XaZR8js-yDUG1o0DsXhNFOhX_W74yAca"/>
+<div class="absolute inset-0 bg-black/40 flex items-center justify-center">
+<span class="bg-black/60 text-white text-xs font-bold px-3 py-1 rounded-full backdrop-blur-sm">Opens 8:00 AM</span>
+</div>
+</div>
+<div class="p-3">
+<div class="flex justify-between items-start mb-1">
+<h4 class="text-base font-bold text-slate-900 dark:text-white">Student Center Cafe</h4>
+<span class="text-slate-500 dark:text-slate-400 text-xs font-bold px-2 py-0.5 rounded-full bg-slate-100 dark:bg-slate-700/50 border border-slate-200 dark:border-slate-600">Closed</span>
+</div>
+<div class="flex items-center gap-3 text-xs text-slate-500 dark:text-slate-400">
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">schedule</span>
+<span>-- mins</span>
+</div>
+<span>•</span>
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">local_shipping</span>
+<span>KES 0</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Grok AI FAB -->
+<div class="fixed bottom-6 right-4 z-50 flex flex-col items-end gap-2">
+<div class="bg-slate-800 text-white text-xs py-1 px-3 rounded-lg shadow-lg mb-1 animate-bounce origin-bottom-right">
+            Ask Grok what to eat
+        </div>
+<button class="bg-primary hover:bg-green-400 text-background-dark h-14 w-14 rounded-full shadow-lg shadow-green-500/40 flex items-center justify-center transition-transform hover:scale-105 active:scale-95">
+<span class="material-symbols-outlined text-[28px]">smart_toy</span>
+</button>
+</div>
+</body></html>

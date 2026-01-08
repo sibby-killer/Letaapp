@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Vendor Profile - MMUST Super App</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Theme Configuration -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#2bee79",
+                        "background-light": "#f6f8f7",
+                        "background-dark": "#102217",
+                        "surface-dark": "#1c3024", // Slightly lighter for cards in dark mode
+                        "surface-light": "#ffffff",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"],
+                        "body": ["Inter", "sans-serif"],
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem", 
+                        "lg": "0.5rem", 
+                        "xl": "0.75rem", 
+                        "2xl": "1rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+        /* Hide scrollbar for horizontal scrolling areas */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-white transition-colors duration-200">
+<!-- Main Container -->
+<div class="relative min-h-screen w-full flex flex-col pb-24 mx-auto max-w-md bg-background-light dark:bg-background-dark shadow-2xl overflow-hidden">
+<!-- Header Section with Hero Image & Top Bar Overlay -->
+<div class="relative w-full h-[240px] shrink-0">
+<!-- Hero Image -->
+<div class="absolute inset-0 w-full h-full bg-gray-300 dark:bg-gray-800 bg-center bg-cover" data-alt="A spread of delicious freshly cooked african food on a wooden table" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAGRa6DnqkaXHFsyFo7WjA_PteIOvd72vYFBTsHJpw-0GDP4mQJCrcto4a66MqzF4U9aKnfQ-IlAL3WH4m9HWYMcWTSPQjdGEWLq_-G3OgX4I8dTcFuFZdeOIEdQ2QjouRB70VU1QVcXt5bqGareXrAIEWHHhbS7SniGgTnYD5FncnMgF0DTYQheImsi3qS3rk1lSujZscANcw7t56_0h9-mqlWc5pWs-WIGivG0LaVrrD846bkG7pbH-xRhRFyGOpoiIljRge7I00E');">
+<!-- Gradient Overlay for Text Readability -->
+<div class="absolute inset-0 bg-gradient-to-t from-background-dark/90 via-background-dark/40 to-transparent"></div>
+</div>
+<!-- Top App Bar (Transparent Overlay) -->
+<div class="absolute top-0 left-0 w-full p-4 pt-6 flex items-center justify-between z-10">
+<button class="flex items-center justify-center size-10 rounded-full bg-black/30 backdrop-blur-sm text-white hover:bg-black/50 transition">
+<span class="material-symbols-outlined">arrow_back</span>
+</button>
+<div class="flex gap-3">
+<button class="flex items-center justify-center size-10 rounded-full bg-black/30 backdrop-blur-sm text-white hover:bg-black/50 transition">
+<span class="material-symbols-outlined">search</span>
+</button>
+<button class="flex items-center justify-center size-10 rounded-full bg-black/30 backdrop-blur-sm text-white hover:bg-black/50 transition">
+<span class="material-symbols-outlined">favorite_border</span>
+</button>
+</div>
+</div>
+<!-- Vendor Info (Bottom of Header) -->
+<div class="absolute bottom-0 left-0 w-full px-4 pb-4 z-10">
+<h1 class="text-white text-3xl font-bold leading-tight mb-1 shadow-sm">Mama Oti's Kitchen</h1>
+<div class="flex flex-wrap items-center gap-2 text-sm text-gray-200">
+<div class="flex items-center bg-surface-dark/60 backdrop-blur-md px-2 py-1 rounded text-primary font-bold">
+<span class="material-symbols-outlined text-sm mr-1">star</span>
+                        4.8 <span class="text-white font-normal ml-1">(120)</span>
+</div>
+<span class="hidden dark:inline text-gray-400">•</span>
+<div class="flex items-center bg-surface-dark/60 backdrop-blur-md px-2 py-1 rounded text-emerald-100">
+<span class="material-symbols-outlined text-sm mr-1 text-primary">bolt</span>
+                        AI Estimate: 12 mins
+                    </div>
+</div>
+</div>
+</div>
+<!-- Navigation Categories (Sticky) -->
+<div class="sticky top-0 z-20 bg-background-light/95 dark:bg-background-dark/95 backdrop-blur-sm border-b border-gray-200 dark:border-white/5 py-3 pl-4">
+<div class="flex gap-3 overflow-x-auto no-scrollbar pr-4">
+<button class="flex items-center justify-center px-4 py-1.5 rounded-full bg-primary text-background-dark font-semibold text-sm whitespace-nowrap shadow-sm">
+                    All
+                </button>
+<button class="flex items-center justify-center px-4 py-1.5 rounded-full bg-gray-200 dark:bg-surface-dark text-gray-700 dark:text-gray-300 font-medium text-sm whitespace-nowrap border border-transparent dark:border-white/10 hover:dark:bg-white/10">
+                    Breakfast
+                </button>
+<button class="flex items-center justify-center px-4 py-1.5 rounded-full bg-gray-200 dark:bg-surface-dark text-gray-700 dark:text-gray-300 font-medium text-sm whitespace-nowrap border border-transparent dark:border-white/10 hover:dark:bg-white/10">
+                    Lunch
+                </button>
+<button class="flex items-center justify-center px-4 py-1.5 rounded-full bg-gray-200 dark:bg-surface-dark text-gray-700 dark:text-gray-300 font-medium text-sm whitespace-nowrap border border-transparent dark:border-white/10 hover:dark:bg-white/10">
+                    Snacks
+                </button>
+<button class="flex items-center justify-center px-4 py-1.5 rounded-full bg-gray-200 dark:bg-surface-dark text-gray-700 dark:text-gray-300 font-medium text-sm whitespace-nowrap border border-transparent dark:border-white/10 hover:dark:bg-white/10">
+                    Drinks
+                </button>
+</div>
+</div>
+<!-- Menu List -->
+<div class="flex flex-col p-4 gap-6">
+<!-- Menu Section Title -->
+<h2 class="text-lg font-bold text-gray-900 dark:text-white">Popular Items</h2>
+<!-- Item 1: Standard -->
+<div class="group flex gap-4 bg-white dark:bg-surface-dark p-3 rounded-xl shadow-sm border border-gray-100 dark:border-white/5">
+<div class="w-24 h-24 shrink-0 rounded-lg bg-gray-200 dark:bg-gray-700 overflow-hidden relative">
+<img alt="Chapati and bean stew in a bowl" class="w-full h-full object-cover" data-alt="Golden brown chapati served with rich bean stew" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAFGQkoHLec4gXi6NnQ2K8uW54PzB-Xvh4r1wn-ll331kEb_ZKeR9yD8vAHg_w88fvzxyjVLPWXPNmBh6ovy_Z0RPdxBFQdkBZc_zURi0-SDSLcaru2PWzTPbf1Qs0SG66pYkmIu3kHvtmoJir1MpXrhpyppGqskRUYjdTKQ5SUPXRU_6SiE5pIRQ5LqTBSRhAXlaH5VhkSAvU1nvAAj7x-SbjUVJCtLNI7wDZCYyWkaooKlN47KtE4F_jbfhMpq5fbROWtpx8w7edB"/>
+</div>
+<div class="flex flex-col flex-1 justify-between">
+<div>
+<h3 class="font-bold text-gray-900 dark:text-white text-base">Chapati &amp; Ndengu</h3>
+<p class="text-xs text-gray-500 dark:text-gray-400 mt-1 line-clamp-2">Soft layered chapati served with stewed green grams and mild spices.</p>
+</div>
+<div class="flex items-center justify-between mt-2">
+<span class="font-bold text-gray-900 dark:text-white">KES 150</span>
+<button class="size-8 rounded-full bg-gray-100 dark:bg-white/10 flex items-center justify-center text-primary hover:bg-primary hover:text-background-dark transition-colors">
+<span class="material-symbols-outlined text-[20px]">add</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Item 2: With Quantity Stepper (Active State) -->
+<div class="group flex gap-4 bg-white dark:bg-surface-dark p-3 rounded-xl shadow-sm border border-primary/30 dark:border-primary/30 ring-1 ring-primary/20">
+<div class="w-24 h-24 shrink-0 rounded-lg bg-gray-200 dark:bg-gray-700 overflow-hidden relative">
+<img alt="Spiced rice pilau with beef" class="w-full h-full object-cover" data-alt="Aromatic spiced rice pilau with tender beef chunks" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC6TJ-sDm1WV2c_c3ylZZzQJ3Ux83IBzkTXs2H31pHmVAHh_aBAouZXy3WUFtZsMolk2vQIeXzNXCfa3okGO1YEs6NHv48ox4A-IMq5ZhI6d_9wZ0FBLJEevmrkBKoOkTZcVJS1AKNjC0XRcezsZCLG3Nu9V9GwITDOdjLM4Z67w30FQFPqCC3iL9Jpu1q1K73cP0dNdi3QZA0KRXZJAD5HBCfi2nU7Mx8kQA1AW7wUo97A20JX0yD6K9koLGRrRi6-w672kd0-tWDe"/>
+<div class="absolute bottom-1 right-1 bg-black/60 backdrop-blur-sm px-1.5 py-0.5 rounded text-[10px] text-white font-medium">Top Pick</div>
+</div>
+<div class="flex flex-col flex-1 justify-between">
+<div>
+<h3 class="font-bold text-gray-900 dark:text-white text-base">Pilau Special</h3>
+<p class="text-xs text-gray-500 dark:text-gray-400 mt-1 line-clamp-2">Swahili style spiced rice with tender beef chunks and kachumbari.</p>
+</div>
+<div class="flex items-center justify-between mt-2">
+<span class="font-bold text-gray-900 dark:text-white">KES 250</span>
+<!-- Stepper Control -->
+<div class="flex items-center bg-primary rounded-full h-8 px-1">
+<button class="size-6 flex items-center justify-center text-background-dark hover:bg-black/10 rounded-full">
+<span class="material-symbols-outlined text-[16px]">remove</span>
+</button>
+<span class="w-6 text-center text-sm font-bold text-background-dark">1</span>
+<button class="size-6 flex items-center justify-center text-background-dark hover:bg-black/10 rounded-full">
+<span class="material-symbols-outlined text-[16px]">add</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Item 3: Standard -->
+<div class="group flex gap-4 bg-white dark:bg-surface-dark p-3 rounded-xl shadow-sm border border-gray-100 dark:border-white/5">
+<div class="w-24 h-24 shrink-0 rounded-lg bg-gray-200 dark:bg-gray-700 overflow-hidden relative">
+<img alt="Smokie wrapped in chapati with salsa" class="w-full h-full object-cover" data-alt="Street food snack, smokie sausage wrapped in chapati" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAkhrO-Q63X1JIViXBaL3QEPykVxip4MAoT5BQKzYBZF8s_U_FmNSsOUiw2-KR24bZ61YtMl96FU1VBZgFRWchv_YoZe7iFf47pj8A_OEEKrVbQbXjDLlUizjIlQoUscDNE2ux5qiJd1Zz5it8OZb3sRD4e7_ABEzgLJhTrKH-Vs0woRMTu2q2_u6Tw_feNnrZxwI0BXidsQrq7NRsPsqi-x4nM-BmWUeT1W8T5wgzH1xCzXTYv7ofz4aZbLNNrJwTd-teKiBvuBPJp"/>
+</div>
+<div class="flex flex-col flex-1 justify-between">
+<div>
+<h3 class="font-bold text-gray-900 dark:text-white text-base">Smocha</h3>
+<p class="text-xs text-gray-500 dark:text-gray-400 mt-1 line-clamp-2">The classic student favorite. Smokie wrapped in chapati with salsa.</p>
+</div>
+<div class="flex items-center justify-between mt-2">
+<span class="font-bold text-gray-900 dark:text-white">KES 80</span>
+<!-- Stepper Control (Example 2) -->
+<div class="flex items-center bg-primary rounded-full h-8 px-1">
+<button class="size-6 flex items-center justify-center text-background-dark hover:bg-black/10 rounded-full">
+<span class="material-symbols-outlined text-[16px]">remove</span>
+</button>
+<span class="w-6 text-center text-sm font-bold text-background-dark">1</span>
+<button class="size-6 flex items-center justify-center text-background-dark hover:bg-black/10 rounded-full">
+<span class="material-symbols-outlined text-[16px]">add</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Item 4: Sold Out -->
+<div class="group flex gap-4 bg-gray-50 dark:bg-surface-dark/40 p-3 rounded-xl border border-transparent opacity-70 grayscale-[0.5]">
+<div class="w-24 h-24 shrink-0 rounded-lg bg-gray-200 dark:bg-gray-700 overflow-hidden relative">
+<img alt="Fried triangular pastry" class="w-full h-full object-cover" data-alt="Golden fried mandazi pastry" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB_OG0773CqmuqbkEx8jW-RLmuLQ6g0-R8tHObEAfvrQScdEo9f8GZjtS_2YodQ5NJPCnbwE4wCNEDmqUEPICIatLXEQd5z5H6e3hkVVdIV9Ls5591JCFWZ8AeQN7MhOMA0gxWQmYEo__OdezbQBtG7a05cU8kb5A4XzUJ_l-NbP6OlAD8nAUBAm8mzcuUWrrqlqCeosAHEOIuxcWpOfSrTEA3P8HJpDOBgcu5fz6w58GrlFZu_BU4o-RrBMJ6BuTSCTHa3LrDEfL_o"/>
+<div class="absolute inset-0 bg-black/40 flex items-center justify-center">
+<span class="text-white text-xs font-bold uppercase tracking-wider border border-white px-2 py-1 rounded">Sold Out</span>
+</div>
+</div>
+<div class="flex flex-col flex-1 justify-between">
+<div>
+<h3 class="font-bold text-gray-700 dark:text-gray-300 text-base">Mandazi (3pcs)</h3>
+<p class="text-xs text-gray-500 dark:text-gray-500 mt-1 line-clamp-2">Sweet triangular fried dough. Perfect for tea.</p>
+</div>
+<div class="flex items-center justify-between mt-2">
+<span class="font-bold text-gray-500 dark:text-gray-400">KES 30</span>
+<button class="size-8 rounded-full bg-gray-200 dark:bg-white/5 flex items-center justify-center text-gray-400 cursor-not-allowed" disabled="">
+<span class="material-symbols-outlined text-[20px]">add</span>
+</button>
+</div>
+</div>
+</div>
+<div class="h-8"></div> <!-- Spacer for scrolling -->
+</div>
+<!-- Floating Cart Bar -->
+<div class="fixed bottom-6 left-1/2 -translate-x-1/2 w-[calc(100%-2rem)] max-w-[420px] z-50">
+<button class="w-full bg-primary hover:bg-[#25d36b] transition-colors rounded-xl p-4 shadow-lg shadow-primary/20 flex items-center justify-between group">
+<div class="flex items-center gap-3">
+<div class="bg-background-dark text-white text-xs font-bold h-6 w-6 rounded-full flex items-center justify-center">2</div>
+<div class="flex flex-col items-start">
+<span class="text-background-dark text-xs font-medium opacity-80">Total</span>
+<span class="text-background-dark font-bold text-sm leading-none">KES 330</span>
+</div>
+</div>
+<div class="flex items-center gap-2 text-background-dark font-bold text-sm">
+                    View Cart
+                    <span class="material-symbols-outlined text-lg group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</div>
+</button>
+</div>
+</div>
+</body></html>

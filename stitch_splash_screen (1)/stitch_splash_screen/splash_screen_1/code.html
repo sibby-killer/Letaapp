@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>LETA APP Splash Screen</title>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Google Fonts: Inter -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#2bee79",
+                        "background-light": "#f6f8f7",
+                        "background-dark": "#102217",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "2xl": "1rem", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="antialiased">
+<div class="relative flex h-screen w-full flex-col items-center justify-between bg-background-light dark:bg-background-dark transition-colors duration-300 overflow-hidden font-display">
+<!-- Decorative Background Gradient for depth -->
+<div class="absolute inset-0 overflow-hidden pointer-events-none">
+<div class="absolute -top-[20%] -left-[10%] w-[70%] h-[70%] bg-primary/5 rounded-full blur-[120px]"></div>
+<div class="absolute top-[40%] -right-[10%] w-[50%] h-[50%] bg-primary/5 rounded-full blur-[100px]"></div>
+</div>
+<!-- Spacer for vertical centering logic -->
+<div class="flex-1"></div>
+<!-- Main Content: Logo & Title -->
+<div class="z-10 flex flex-col items-center justify-center w-full px-6">
+<!-- Logo Container -->
+<div class="relative group/design-root mb-8">
+<!-- Using a modified version of the Image component for the App Logo -->
+<div class="w-32 h-32 rounded-3xl overflow-hidden shadow-2xl shadow-primary/20 ring-1 ring-white/10 flex items-center justify-center bg-[#1a2e23]">
+<div class="w-full h-full bg-center bg-no-repeat bg-cover" data-alt="LETA App minimalist logo icon with abstract geometric shape" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDxmM_2DPk9Jfjn0Ib4wDS4cZxpRqA_KSSf5iW7dalNle56JlbRbynHrFiHWKKGPtspIEI8sjUiQgdddmYX5I2erNvOdjTnZvGyS2GxpTLAcgUdqq8jvD7GCtgRWHUuepKgONIwPzqlGoQBUzQB6PH1LEE-Ir5WmDNJrNHsvniadd_NKjrZr7pVIQJSHbOsnWgVxoQmHPxTUCtp5HSfP_BQejcL7w9BYqDkfvLB78l3itbpMcGH6VaZ1NhJeZHijGd-W-XuS-X5HRXx");'></div>
+</div>
+</div>
+<!-- Headline Text -->
+<h1 class="text-gray-900 dark:text-white tracking-tight text-4xl font-extrabold leading-tight text-center">
+                LETA APP
+            </h1>
+<!-- Tagline -->
+<p class="text-gray-500 dark:text-gray-400 text-lg font-medium leading-normal pt-2 text-center">
+                Campus Delivery
+            </p>
+</div>
+<!-- Spacer for vertical centering logic -->
+<div class="flex-1"></div>
+<!-- Bottom Section: Loading & Meta -->
+<div class="z-10 w-full max-w-[320px] flex flex-col gap-6 p-8 mb-4">
+<!-- Progress Bar / Loading Indicator -->
+<div class="flex flex-col gap-2">
+<div class="flex justify-between items-center">
+<!-- Replacing text with spinner icon + text for context -->
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary animate-spin text-xl">progress_activity</span>
+<p class="text-gray-600 dark:text-gray-300 text-sm font-medium leading-normal">Checking authentication...</p>
+</div>
+</div>
+<!-- Reuse styles from ProgressBar component -->
+<div class="h-1.5 w-full rounded-full bg-gray-200 dark:bg-[#326747]/50 overflow-hidden">
+<div aria-label="Loading progress" class="h-full rounded-full bg-primary w-[45%]"></div>
+</div>
+</div>
+<!-- Meta Text -->
+<p class="text-gray-400 dark:text-[#92c9a8] text-xs font-medium tracking-widest uppercase text-center opacity-80">
+                Powered by AI Logistics
+            </p>
+</div>
+</div>
+</body></html>

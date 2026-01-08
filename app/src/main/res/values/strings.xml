@@ -1,0 +1,36 @@
+<resources>
+    <string name="app_name">LETA APP</string>
+    <string name="campus_delivery">Campus Delivery</string>
+    <string name="mmust_eats">MMUST Eats</string>
+    <string name="campus_cravings">Campus cravings, delivered.</string>
+    <string name="checking_authentication">Checking authentication…</string>
+    <string name="powered_by_ai">Powered by AI Logistics</string>
+    <string name="app_logo">App Logo</string>
+    <string name="log_in">Log In</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="student_email">Student/Staff Email</string>
+    <string name="password">Password</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="forgot_password">Forgot Password?</string>
+    <string name="or_continue_with">Or continue with</string>
+    <string name="google">Google</string>
+    <string name="terms_and_privacy">By continuing, you agree to our Terms of Service and Privacy Policy.</string>
+    <string name="choose_your_path">Choose your path</string>
+    <string name="customize_campus">Customize your campus experience.</string>
+    <string name="student_role">I am a Student</string>
+    <string name="vendor_role">I am a Vendor</string>
+    <string name="rider_role">I am a Rider</string>
+    <string name="student_desc">Browse menus, split bills &amp; order delivery to your dorm.</string>
+    <string name="vendor_desc">Manage orders, track sales &amp; grow your business on campus.</string>
+    <string name="rider_desc">Earn money delivering orders across campus.</string>
+    <string name="continue_btn">Continue</string>
+    <string name="select_your_role">Select Your Role</string>
+    <string name="todays_earnings">Today\'s Earnings</string>
+    <string name="trips_done">Trips Done</string>
+    <string name="waiting_for_orders">Waiting for orders…</string>
+    <string name="matching_vendors">Matching you with nearby vendors</string>
+    <string name="view_hotspots">View Hotspots Map</string>
+    <string name="online">Online</string>
+    <string name="offline">Offline</string>
+    <string name="default_web_client_id">YOUR_FIREBASE_WEB_CLIENT_ID_HERE</string>
+</resources>

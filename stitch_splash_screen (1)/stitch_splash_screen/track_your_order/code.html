@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Track Your Order - MMUST Eats</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Theme Configuration -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#2bee79",
+                        "background-light": "#f6f8f7",
+                        "background-dark": "#102217",
+                        "surface-dark": "#162e22",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "2xl": "1rem", "3xl": "1.5rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style type="text/tailwindcss">
+        @layer utilities {
+            .glass-panel {
+                @apply backdrop-blur-md bg-black/30 border border-white/10;
+            }
+            .timeline-dot {
+                @apply w-3 h-3 rounded-full z-10;
+            }
+            .timeline-line {
+                @apply absolute w-0.5 h-full left-[5px] -z-0 top-3;
+            }
+        }
+        
+        /* Custom map marker pulse animation */
+        @keyframes ripple {
+            0% { box-shadow: 0 0 0 0 rgba(43, 238, 121, 0.4); }
+            100% { box-shadow: 0 0 0 20px rgba(43, 238, 121, 0); }
+        }
+        .marker-pulse {
+            animation: ripple 2s infinite;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-gray-900 dark:text-white h-screen w-full flex flex-col overflow-hidden">
+<!-- Map Area (Top ~55%) -->
+<div class="relative flex-1 w-full bg-[#1a1a1a] overflow-hidden">
+<!-- Top Bar Overlay -->
+<div class="absolute top-0 left-0 w-full z-30 pt-12 pb-4 px-4 flex items-center justify-between bg-gradient-to-b from-black/80 to-transparent">
+<button class="glass-panel text-white flex size-10 items-center justify-center rounded-full hover:bg-white/10 active:scale-95 transition-all">
+<span class="material-symbols-outlined">arrow_back</span>
+</button>
+<div class="glass-panel px-4 py-1.5 rounded-full">
+<h2 class="text-white text-sm font-bold tracking-wide">Order #2938</h2>
+</div>
+<button class="glass-panel text-white flex size-10 items-center justify-center rounded-full hover:bg-white/10 active:scale-95 transition-all">
+<span class="material-symbols-outlined">help</span>
+</button>
+</div>
+<!-- Simulated Map -->
+<div class="absolute inset-0 w-full h-full bg-cover bg-center" data-alt="Dark stylized map of university campus streets at night" data-location="Kakamega, Kenya" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDjdJHeKmEFJWUsxsOxkO7O2W2IMdqXG2uD-bXKY80BYXPdpuTH1X9eImqSvgAgWnptyxpLhH2GXSFtsUw40KuoYHU7j5xRTtGu0CIq_r61eUfkWrNfSziOfFmsLhHjMOPRCWqBU860MfrPt0r_VOPbQJDpQXCt2xCJG8dEajW87pSd3QpH-0LkBCafpbrExOluyhq7V44VZNHoI_Ishm1Bff7ihMhrr-4KXncCoWfwTZh_mrFKX6aDSst58QHGfL6vf_HqSF0UpCWA'); filter: grayscale(100%) contrast(1.2) brightness(0.4);">
+</div>
+<!-- Route Path SVG Overlay -->
+<svg class="absolute inset-0 w-full h-full pointer-events-none z-10 opacity-80" preserveaspectratio="none" viewbox="0 0 375 500">
+<!-- Simulated path from top right to center left -->
+<path d="M 280 100 Q 250 200 120 280" fill="none" stroke="#2bee79" stroke-dasharray="10,5" stroke-linecap="round" stroke-width="4"></path>
+</svg>
+<!-- Map Markers -->
+<!-- Shop Marker (Top Right) -->
+<div class="absolute top-[20%] right-[20%] z-20 flex flex-col items-center">
+<div class="w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-lg border-2 border-gray-800">
+<span class="material-symbols-outlined text-gray-800 text-xl">storefront</span>
+</div>
+<span class="mt-1 text-xs font-bold text-white bg-black/50 px-2 py-0.5 rounded backdrop-blur-sm">Tasty Bites</span>
+</div>
+<!-- Rider Marker (Moving on path) -->
+<div class="absolute top-[45%] left-[40%] z-20 flex flex-col items-center">
+<div class="w-12 h-12 bg-primary rounded-full flex items-center justify-center shadow-[0_0_20px_rgba(43,238,121,0.6)] border-4 border-white marker-pulse z-10">
+<span class="material-symbols-outlined text-black text-xl">two_wheeler</span>
+</div>
+<div class="bg-white text-black text-[10px] font-bold px-2 py-0.5 rounded-full mt-1 shadow-md whitespace-nowrap">
+                Juma • 2 min away
+            </div>
+</div>
+<!-- Destination/User Marker (Bottom Left) -->
+<div class="absolute bottom-[20%] left-[10%] z-20 flex flex-col items-center">
+<div class="w-10 h-10 bg-[#193324] rounded-full flex items-center justify-center shadow-lg border-2 border-primary">
+<span class="material-symbols-outlined text-primary text-xl">location_on</span>
+</div>
+<span class="mt-1 text-xs font-bold text-white bg-black/50 px-2 py-0.5 rounded backdrop-blur-sm">Hall 4</span>
+</div>
+</div>
+<!-- Bottom Sheet (Order Status) -->
+<div class="relative z-20 -mt-6 bg-white dark:bg-surface-dark rounded-t-3xl shadow-[0_-4px_30px_rgba(0,0,0,0.5)] flex flex-col max-h-[55vh] w-full">
+<!-- Handle -->
+<div class="w-full flex justify-center pt-3 pb-2">
+<div class="h-1.5 w-12 rounded-full bg-gray-300 dark:bg-gray-600"></div>
+</div>
+<!-- Scrollable Content -->
+<div class="flex-1 overflow-y-auto px-6 pt-2 pb-6">
+<!-- Headline Status -->
+<div class="flex justify-between items-end mb-6">
+<div>
+<h1 class="text-3xl font-bold text-gray-900 dark:text-white tracking-tight">12 <span class="text-lg text-gray-500 dark:text-gray-400 font-medium">mins</span></h1>
+<p class="text-primary font-medium text-sm mt-0.5 flex items-center gap-1">
+<span class="material-symbols-outlined text-base">schedule</span>
+                        Estimated Arrival
+                    </p>
+</div>
+<div class="text-right">
+<p class="text-xs text-gray-500 dark:text-gray-400">Status</p>
+<p class="text-white font-semibold">On the way</p>
+</div>
+</div>
+<!-- Timeline -->
+<div class="relative pl-2 mb-8">
+<!-- Step 1: Placed -->
+<div class="relative flex gap-4 pb-6">
+<div class="flex flex-col items-center">
+<div class="timeline-dot bg-primary"></div> <!-- Active dot -->
+<div class="timeline-line bg-primary"></div> <!-- Line -->
+</div>
+<div class="flex-1 -mt-1.5">
+<p class="text-sm font-semibold text-gray-900 dark:text-white">Order Placed</p>
+<p class="text-xs text-gray-500 dark:text-gray-400">12:30 PM</p>
+</div>
+</div>
+<!-- Step 2: Preparing -->
+<div class="relative flex gap-4 pb-6">
+<div class="flex flex-col items-center">
+<div class="timeline-dot bg-primary"></div>
+<div class="timeline-line bg-primary"></div>
+</div>
+<div class="flex-1 -mt-1.5">
+<p class="text-sm font-semibold text-gray-900 dark:text-white">Preparing</p>
+<p class="text-xs text-gray-500 dark:text-gray-400">Kitchen</p>
+</div>
+</div>
+<!-- Step 3: Rider Assigned -->
+<div class="relative flex gap-4 pb-6">
+<div class="flex flex-col items-center">
+<div class="timeline-dot bg-primary"></div>
+<div class="timeline-line bg-primary/50"></div> <!-- Line starts fading or changes style -->
+</div>
+<div class="flex-1 -mt-1.5">
+<p class="text-sm font-semibold text-gray-900 dark:text-white">Rider Assigned</p>
+<p class="text-xs text-gray-500 dark:text-gray-400">Juma is assigned</p>
+</div>
+</div>
+<!-- Step 4: Picked Up (Current) -->
+<div class="relative flex gap-4 pb-6">
+<div class="flex flex-col items-center">
+<!-- Pulsing current step -->
+<div class="relative flex items-center justify-center w-3 h-3 z-10">
+<div class="absolute w-3 h-3 bg-primary rounded-full animate-ping opacity-75"></div>
+<div class="relative w-3 h-3 bg-primary rounded-full border-2 border-white dark:border-surface-dark"></div>
+</div>
+<div class="timeline-line bg-gray-200 dark:bg-gray-700"></div>
+</div>
+<div class="flex-1 -mt-1.5">
+<p class="text-sm font-bold text-primary">Picked Up</p>
+<p class="text-xs text-gray-500 dark:text-gray-400">Heading to your location</p>
+</div>
+</div>
+<!-- Step 5: Arriving -->
+<div class="relative flex gap-4">
+<div class="flex flex-col items-center">
+<div class="timeline-dot bg-gray-300 dark:bg-gray-600 border-2 border-white dark:border-surface-dark"></div>
+</div>
+<div class="flex-1 -mt-1.5">
+<p class="text-sm font-medium text-gray-400 dark:text-gray-500">Arriving</p>
+<p class="text-xs text-gray-400 dark:text-gray-600">Gate B, Hall 4</p>
+</div>
+</div>
+</div>
+<!-- Rider Card -->
+<div class="bg-gray-50 dark:bg-[#102217]/50 border border-gray-200 dark:border-white/5 rounded-xl p-4 flex items-center justify-between mb-20">
+<div class="flex items-center gap-3">
+<div class="relative">
+<div class="w-12 h-12 rounded-full overflow-hidden bg-gray-300">
+<img class="w-full h-full object-cover" data-alt="Portrait of delivery rider Juma smiling" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDWMGZDqiJ35_fDniYa71aibHHlvbe7jWZPWqVFMoGJSgBzv3xbFJKuWYR0EPhCKpDCyB0y-k3lIh9qj49RlsrpWIyQEJl-_o221iAatwnFzlytQ2EHh_VJvD34bjCpPhhGM0qjms8EQEqQizM4CUvEBwfJpMbe_gzCiOicNDkEyd4YqIxgQJXOK0Ud5XNMXZNb9oG-TBaqk6ftSDaqqbA_we22rUGX3GdkxzD-XcMYezEbAYPLbyWh_rNnOMmQtYVxHo2T7GZyWge-"/>
+</div>
+<div class="absolute -bottom-1 -right-1 bg-primary text-black text-[10px] font-bold px-1.5 py-0.5 rounded border border-white dark:border-surface-dark">
+                            4.8 ★
+                        </div>
+</div>
+<div>
+<h3 class="text-sm font-bold text-gray-900 dark:text-white">Juma O.</h3>
+<p class="text-xs text-gray-500 dark:text-gray-400">Boxer X150 • <span class="bg-gray-200 dark:bg-white/10 px-1 rounded text-[10px] tracking-wider font-mono text-gray-700 dark:text-gray-300">KDA 123</span></p>
+</div>
+</div>
+<button class="w-10 h-10 rounded-full bg-white/5 hover:bg-white/10 flex items-center justify-center text-primary transition-colors border border-white/10">
+<span class="material-symbols-outlined text-xl">chat</span>
+</button>
+</div>
+</div>
+<!-- Sticky Actions Footer -->
+<div class="absolute bottom-0 left-0 w-full bg-white dark:bg-surface-dark border-t border-gray-100 dark:border-white/5 p-4 pb-8 flex gap-3">
+<button class="flex-1 h-12 rounded-xl border border-gray-200 dark:border-white/10 bg-transparent text-gray-700 dark:text-white font-semibold text-sm hover:bg-gray-50 dark:hover:bg-white/5 transition-colors flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[20px]">support_agent</span>
+                Support
+            </button>
+<button class="flex-[2] h-12 rounded-xl bg-primary text-black font-bold text-sm shadow-lg shadow-primary/20 hover:bg-primary/90 transition-colors flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[20px] fill-1">call</span>
+                Call Juma
+            </button>
+</div>
+</div>
+</body></html>

@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Menu Manager - MMUST Super App</title>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+            extend: {
+                colors: {
+                    "primary": "#2bee79",
+                    "background-light": "#f6f8f7",
+                    "background-dark": "#102217",
+                    "surface-dark": "#112218",
+                    "card-dark": "#234832",
+                    "text-secondary": "#92c9a8",
+                },
+                fontFamily: {
+                    "display": ["Inter", "sans-serif"]
+                },
+                borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+            },
+            },
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display antialiased selection:bg-primary selection:text-black">
+<div class="relative flex min-h-screen w-full flex-col bg-surface-dark overflow-x-hidden pb-24">
+<!-- Sticky Header -->
+<header class="sticky top-0 z-20 bg-surface-dark/95 backdrop-blur-md border-b border-white/5 pt-safe-top">
+<div class="flex items-center justify-between p-4 pb-2">
+<div>
+<h2 class="text-white text-xl font-bold leading-tight tracking-tight">Menu Manager</h2>
+<p class="text-text-secondary text-xs font-medium mt-0.5">MMUST Campus Cafeteria</p>
+</div>
+<div class="flex items-center gap-3">
+<button class="flex items-center justify-center h-10 w-10 rounded-full bg-card-dark text-white hover:bg-white/10 transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<div class="h-10 w-10 rounded-full bg-cover bg-center border-2 border-card-dark" data-alt="User profile picture" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuA2bhV8XtGte7VFMM11uo7EAScEWQos-pPVxxubcTlFVQP1h-bDUG4EP2Rc1Tf8FNuxQObJUTW2us5geU-nqp9OuB2_T_5nyo1WNhofHLhmipr--B45xMQdDgznW5JfbM3V8OyVDTXg7zvPwuIoYt2rl1-2FZKQn1Z42hk5PWW-_T3SNNMpdrk4YQxad4cpXyOC7D8ASJwkhmLAkO5_Nh-qbr99u6EDbn7CXAqmdLJI6VgH91WTnxNeCRtTp29UigVg1jKbto2RAanb");'></div>
+</div>
+</div>
+<!-- Search Bar -->
+<div class="px-4 pb-3 pt-1">
+<label class="relative flex items-center w-full h-12 rounded-xl bg-card-dark overflow-hidden focus-within:ring-2 focus-within:ring-primary/50 transition-all group">
+<div class="flex items-center justify-center pl-4 text-text-secondary group-focus-within:text-primary transition-colors">
+<span class="material-symbols-outlined">search</span>
+</div>
+<input class="w-full bg-transparent border-none text-white placeholder-text-secondary/70 h-full px-3 focus:ring-0 text-base" placeholder="Search menu items..." type="text"/>
+</label>
+</div>
+</header>
+<!-- Stats Overview -->
+<section class="px-4 py-4">
+<div class="flex gap-3">
+<div class="flex flex-1 flex-col justify-between gap-1 rounded-xl p-4 bg-card-dark border border-white/5 shadow-lg">
+<div class="flex items-center gap-2 text-text-secondary">
+<span class="material-symbols-outlined text-[20px]">inventory_2</span>
+<span class="text-sm font-medium">Total Items</span>
+</div>
+<p class="text-white text-3xl font-bold tracking-tight">24</p>
+</div>
+<div class="flex flex-1 flex-col justify-between gap-1 rounded-xl p-4 bg-gradient-to-br from-primary/20 to-card-dark border border-primary/20 shadow-lg relative overflow-hidden">
+<!-- Decorational glow -->
+<div class="absolute -right-4 -top-4 w-16 h-16 bg-primary/30 blur-2xl rounded-full"></div>
+<div class="flex items-center gap-2 text-primary">
+<span class="material-symbols-outlined text-[20px]">check_circle</span>
+<span class="text-sm font-bold">Active</span>
+</div>
+<p class="text-white text-3xl font-bold tracking-tight">18</p>
+</div>
+</div>
+</section>
+<!-- Filter Chips -->
+<section class="w-full overflow-x-auto no-scrollbar pl-4 pb-2">
+<div class="flex gap-2 min-w-max pr-4">
+<button class="flex h-9 items-center px-4 rounded-full bg-primary text-black shadow-lg shadow-primary/20 transition-transform active:scale-95">
+<span class="text-sm font-bold">All</span>
+</button>
+<button class="flex h-9 items-center px-4 rounded-full bg-card-dark border border-white/5 text-white hover:bg-white/10 transition-colors active:scale-95">
+<span class="text-sm font-medium">Breakfast</span>
+</button>
+<button class="flex h-9 items-center px-4 rounded-full bg-card-dark border border-white/5 text-white hover:bg-white/10 transition-colors active:scale-95">
+<span class="text-sm font-medium">Lunch</span>
+</button>
+<button class="flex h-9 items-center px-4 rounded-full bg-card-dark border border-white/5 text-white hover:bg-white/10 transition-colors active:scale-95">
+<span class="text-sm font-medium">Snacks</span>
+</button>
+<button class="flex h-9 items-center px-4 rounded-full bg-card-dark border border-white/5 text-white hover:bg-white/10 transition-colors active:scale-95">
+<span class="text-sm font-medium">Drinks</span>
+</button>
+</div>
+</section>
+<!-- Menu Items List -->
+<main class="flex flex-col px-4 pt-2 gap-3">
+<!-- Active Item 1 -->
+<div class="group relative flex items-center gap-4 bg-card-dark rounded-xl p-3 border border-white/5 shadow-sm transition-all hover:border-white/10">
+<div class="relative shrink-0 overflow-hidden rounded-lg h-20 w-20 bg-gray-700">
+<div class="absolute inset-0 bg-cover bg-center transition-transform group-hover:scale-105" data-alt="Stack of cooked chapatis" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDwpi-xVW-AugUK5GHvX0WnKRIMRggc8eCpD8Wz8JM-o9XeC30_FH8iW0bpMRwQ36mbtGlc7zh1UVCPm9GtorFWvY7yfqoFJQJL7E4w4mK-ABNZd0c0tFphZVfIoxzG7ic_VTqInGXfyK5s0Thk0OgumxLhvH8SYDi6LYqhnyX8hZoF2fNJkDbYMVFlinGgtNtPdZ78VICkMAAPP_FUje-vCL2KPh6czAqFg73xDoa7nRYGI3XxIP5mRHwHBSCu6FslR9WpcuvMFE_L");'></div>
+</div>
+<div class="flex flex-col flex-1 min-w-0 justify-center h-full py-1">
+<div class="flex justify-between items-start">
+<h3 class="text-white text-lg font-bold leading-tight truncate pr-2">Chapati &amp; Beans</h3>
+<button class="text-text-secondary hover:text-white transition-colors p-1 -mr-2 -mt-1 rounded-full hover:bg-white/5">
+<span class="material-symbols-outlined text-[20px]">edit</span>
+</button>
+</div>
+<p class="text-primary text-base font-bold mt-1">KES 50</p>
+<p class="text-text-secondary text-xs truncate mt-auto">Soft layers with coconut beans stew</p>
+</div>
+<div class="shrink-0 flex items-center self-end mb-1">
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-[#102217] peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+<span class="ml-2 text-xs font-medium text-primary hidden sm:block">In Stock</span>
+</label>
+</div>
+</div>
+<!-- Active Item 2 -->
+<div class="group relative flex items-center gap-4 bg-card-dark rounded-xl p-3 border border-white/5 shadow-sm transition-all hover:border-white/10">
+<div class="relative shrink-0 overflow-hidden rounded-lg h-20 w-20 bg-gray-700">
+<div class="absolute inset-0 bg-cover bg-center transition-transform group-hover:scale-105" data-alt="Rolled smokie inside a chapati with salsa" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBSmKFxX9oWmlYzOGkMLksFeIHDGJ_SLkZonUcGRy9rgZc-P6hy1AU3PQxaL_js_PY13K3meeb95jJWzH7UCmxhytOiXXLfRn8KwLP9TYzdRY_2iRSpmpQMy2cJsum3hakxGGOOHwuKCsNFb8BLkjwv-_U_PjOuWQr5aCH4hrkZ5H_7s8Bg4YyLhpeU8FnzgMRFybDty-1LkH8GXAZvarC01ye8g1aVxKRdi4z_Px_u-hSZUvL7MyjwTNlhNftlH1nMkOGz8FExLtaq");'></div>
+</div>
+<div class="flex flex-col flex-1 min-w-0 justify-center h-full py-1">
+<div class="flex justify-between items-start">
+<h3 class="text-white text-lg font-bold leading-tight truncate pr-2">Smocha Special</h3>
+<button class="text-text-secondary hover:text-white transition-colors p-1 -mr-2 -mt-1 rounded-full hover:bg-white/5">
+<span class="material-symbols-outlined text-[20px]">edit</span>
+</button>
+</div>
+<p class="text-primary text-base font-bold mt-1">KES 70</p>
+<p class="text-text-secondary text-xs truncate mt-auto">Spicy kachumbari with double smokie</p>
+</div>
+<div class="shrink-0 flex items-center self-end mb-1">
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-[#102217] peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</div>
+</div>
+<!-- Inactive Item -->
+<div class="group relative flex items-center gap-4 bg-card-dark/60 rounded-xl p-3 border border-white/5 shadow-sm transition-all">
+<div class="relative shrink-0 overflow-hidden rounded-lg h-20 w-20 bg-gray-800 opacity-60 grayscale group-hover:grayscale-0 transition-all">
+<div class="absolute inset-0 bg-cover bg-center" data-alt="Golden brown fried dough pastry" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDJzJ_1Hb30-FLNZTHM_vmoFkZ5C9QMpHwQYdbonqpjTraPARKhYsnbaORnSSQ4MpbDiEwtd5Gf1E2mEBSQEjQIxnrNQXe9NQmJcAgrUNIRjw3RWndB2CsWQZG6ABpUFjrXrQClAxfZ2ba18NcNXyXSmT03rKa_Kl1EEu2UErK1zCjJyNMSLLay4pyrtKaMpeNPb8KKyL67Sjyp-cqYANvrxcQqOTphWUvWi0-A2IZ5Kp0gIdpX28y1oY-zlqLYFM60eFCpk5dHVlLF");'></div>
+<div class="absolute inset-0 flex items-center justify-center bg-black/40">
+<span class="material-symbols-outlined text-white/80">block</span>
+</div>
+</div>
+<div class="flex flex-col flex-1 min-w-0 justify-center h-full py-1 opacity-70 group-hover:opacity-100 transition-opacity">
+<div class="flex justify-between items-start">
+<h3 class="text-white text-lg font-bold leading-tight truncate pr-2">Mandazi</h3>
+<button class="text-text-secondary hover:text-white transition-colors p-1 -mr-2 -mt-1 rounded-full hover:bg-white/5">
+<span class="material-symbols-outlined text-[20px]">edit</span>
+</button>
+</div>
+<p class="text-text-secondary text-base font-bold mt-1">KES 10</p>
+<p class="text-text-secondary text-xs truncate mt-auto">Sweet cardamom flavored pastry</p>
+</div>
+<div class="shrink-0 flex items-center self-end mb-1">
+<label class="relative inline-flex items-center cursor-pointer">
+<input class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-[#102217] peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</div>
+</div>
+<!-- Active Item 3 -->
+<div class="group relative flex items-center gap-4 bg-card-dark rounded-xl p-3 border border-white/5 shadow-sm transition-all hover:border-white/10">
+<div class="relative shrink-0 overflow-hidden rounded-lg h-20 w-20 bg-gray-700">
+<div class="absolute inset-0 bg-cover bg-center transition-transform group-hover:scale-105" data-alt="Spiced rice dish with beef" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCwSJzVlvdRi7roOwLy5ZYDhIGoouIcdcUb5_Z03e3uCGnG33i6DwApk6iUw_G8ED80QzF8HQi8mr9mGmiwPu_LZBIM4bGXni-fDzY3gyFBSsZD2NeGkJgm949Y0tmaCRjr6K-k_X5xmCp-_Qj2STGDrZW11VCSf5DrGKNBFllYWPJGZ6bTWmQBU_kun-quI0Wy3GqdFSPILfYEU1Z82THQO8cs5Oykpscdzmc87dAndNegK3csO76kAC8TbLooc2rWUuZ-D80dgAlK");'></div>
+</div>
+<div class="flex flex-col flex-1 min-w-0 justify-center h-full py-1">
+<div class="flex justify-between items-start">
+<h3 class="text-white text-lg font-bold leading-tight truncate pr-2">Beef Pilau</h3>
+<button class="text-text-secondary hover:text-white transition-colors p-1 -mr-2 -mt-1 rounded-full hover:bg-white/5">
+<span class="material-symbols-outlined text-[20px]">edit</span>
+</button>
+</div>
+<p class="text-primary text-base font-bold mt-1">KES 150</p>
+<p class="text-text-secondary text-xs truncate mt-auto">Served with banana and kachumbari</p>
+</div>
+<div class="shrink-0 flex items-center self-end mb-1">
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-[#102217] peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</div>
+</div>
+</main>
+<!-- Floating Action Button / Sticky Bottom Action -->
+<div class="fixed bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-background-dark via-background-dark/95 to-transparent z-10">
+<button class="w-full h-14 bg-primary rounded-xl flex items-center justify-center gap-2 shadow-[0_0_20px_rgba(43,238,121,0.3)] hover:shadow-[0_0_25px_rgba(43,238,121,0.5)] active:scale-[0.98] transition-all">
+<span class="material-symbols-outlined text-black font-bold">add</span>
+<span class="text-black text-lg font-bold">Add New Item</span>
+</button>
+</div>
+</div>
+</body></html>
