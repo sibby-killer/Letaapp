@@ -4,49 +4,43 @@ import android.content.Context;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.google.firebase.FirebaseNetworkException;
-import com.google.firebase.auth.FirebaseAuthException;
+import java.io.IOException;
+import java.net.SocketTimeoutException;
+import java.net.UnknownHostException;
 
 /**
- * Centralized Error Handler
+ * Centralized Error Handler - Updated for Supabase
  */
 public class ErrorHandler {
     
     private static final String TAG = "ErrorHandler";
     
-    public static void handleFirebaseAuthError(Context context, Exception e) {
+    public static void handleAuthError(Context context, Exception e) {
         String message = "Authentication failed";
         
-        if (e instanceof FirebaseAuthException) {
-            FirebaseAuthException authException = (FirebaseAuthException) e;
-            String errorCode = authException.getErrorCode();
+        if (e.getMessage() != null) {
+            String errorMsg = e.getMessage().toLowerCase();
             
-            switch (errorCode) {
-                case "ERROR_INVALID_EMAIL":
-                    message = "Invalid email address";
-                    break;
-                case "ERROR_WRONG_PASSWORD":
-                    message = "Incorrect password";
-                    break;
-                case "ERROR_USER_NOT_FOUND":
-                    message = "No account found with this email";
-                    break;
-                case "ERROR_USER_DISABLED":
-                    message = "This account has been disabled";
-                    break;
-                case "ERROR_TOO_MANY_REQUESTS":
-                    message = "Too many attempts. Please try again later";
-                    break;
-                case "ERROR_EMAIL_ALREADY_IN_USE":
-                    message = "Email already registered";
-                    break;
-                case "ERROR_WEAK_PASSWORD":
-                    message = "Password is too weak";
-                    break;
-                default:
-                    message = "Authentication error: " + e.getMessage();
+            if (errorMsg.contains("invalid email") || errorMsg.contains("email")) {
+                message = "Invalid email address";
+            } else if (errorMsg.contains("password") || errorMsg.contains("credentials")) {
+                message = "Incorrect password";
+            } else if (errorMsg.contains("user not found") || errorMsg.contains("not found")) {
+                message = "No account found with this email";
+            } else if (errorMsg.contains("disabled")) {
+                message = "This account has been disabled";
+            } else if (errorMsg.contains("too many") || errorMsg.contains("rate limit")) {
+                message = "Too many attempts. Please try again later";
+            } else if (errorMsg.contains("already exists") || errorMsg.contains("already in use")) {
+                message = "Email already registered";
+            } else if (errorMsg.contains("weak password") || errorMsg.contains("password")) {
+                message = "Password is too weak";
+            } else {
+                message = "Authentication error: " + e.getMessage();
             }
-        } else if (e instanceof FirebaseNetworkException) {
+        }
+        
+        if (isNetworkError(e)) {
             message = "Network error. Check your connection";
         }
         
@@ -54,21 +48,30 @@ public class ErrorHandler {
         showError(context, message);
     }
     
-    public static void handleFirestoreError(Context context, Exception e) {
+    public static void handleDatabaseError(Context context, Exception e) {
         String message = "Database error";
         
-        if (e instanceof FirebaseNetworkException) {
+        if (isNetworkError(e)) {
             message = "Network error. Check your connection";
         } else if (e.getMessage() != null) {
-            if (e.getMessage().contains("permission")) {
+            if (e.getMessage().contains("permission") || e.getMessage().contains("unauthorized")) {
                 message = "Permission denied. Please contact support";
             } else {
                 message = "Error: " + e.getMessage();
             }
         }
         
-        Log.e(TAG, "Firestore error: " + message, e);
+        Log.e(TAG, "Database error: " + message, e);
         showError(context, message);
+    }
+    
+    private static boolean isNetworkError(Exception e) {
+        return e instanceof IOException || 
+               e instanceof SocketTimeoutException || 
+               e instanceof UnknownHostException ||
+               (e.getMessage() != null && (e.getMessage().contains("network") || 
+                                          e.getMessage().contains("connection") ||
+                                          e.getMessage().contains("timeout")));
     }
     
     public static void handlePaymentError(Context context, Exception e) {

@@ -7,14 +7,13 @@ import android.os.Looper;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.mmust.leta.databinding.ActivitySplashBinding;
+import com.mmust.leta.utils.SupabaseClient;
 
 public class SplashActivity extends AppCompatActivity {
     
     private ActivitySplashBinding binding;
-    private FirebaseAuth mAuth;
+    private SupabaseClient supabaseClient;
     private static final int SPLASH_DELAY = 3000; // 3 seconds
 
     @Override
@@ -23,8 +22,8 @@ public class SplashActivity extends AppCompatActivity {
         binding = ActivitySplashBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         
-        // Initialize Firebase Auth
-        mAuth = FirebaseAuth.getInstance();
+        // Initialize Supabase Client
+        supabaseClient = SupabaseClient.getInstance(this);
         
         // Animate progress bar
         animateProgressBar();
@@ -49,11 +48,11 @@ public class SplashActivity extends AppCompatActivity {
     }
     
     private void checkAuthenticationStatus() {
-        FirebaseUser currentUser = mAuth.getCurrentUser();
+        String userId = supabaseClient.getCurrentUserId();
         
-        if (currentUser != null) {
+        if (userId != null) {
             // User is signed in, route to appropriate dashboard
-            UserRouter.routeUser(this, currentUser.getUid());
+            UserRouter.routeUser(this, userId);
         } else {
             // No user signed in, go to auth screen
             Intent intent = new Intent(SplashActivity.this, AuthActivity.class);
