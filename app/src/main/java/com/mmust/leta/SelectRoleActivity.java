@@ -1,7 +1,6 @@
 package com.mmust.leta;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.Toast;
 
@@ -14,7 +13,6 @@ public class SelectRoleActivity extends AppCompatActivity {
     
     private ActivitySelectRoleBinding binding;
     private SupabaseClient supabase;
-    private SharedPreferences prefs;
     private String selectedRole = "student"; // Default to student
 
     @Override
@@ -25,7 +23,6 @@ public class SelectRoleActivity extends AppCompatActivity {
         
         // Initialize
         supabase = SupabaseClient.getInstance(this);
-        prefs = getSharedPreferences("LetaApp", MODE_PRIVATE);
         
         setupListeners();
     }
@@ -67,9 +64,8 @@ public class SelectRoleActivity extends AppCompatActivity {
     }
     
     private void saveRoleAndContinue() {
-        String userId = prefs.getString("user_id", null);
-        String accessToken = prefs.getString("access_token", null);
-        String email = prefs.getString("email", "");
+        String userId = supabase.getCurrentUserId();
+        String accessToken = supabase.getAccessToken();
         
         if (userId == null || accessToken == null) {
             Toast.makeText(this, "Session expired. Please login again.", Toast.LENGTH_SHORT).show();
@@ -80,6 +76,12 @@ public class SelectRoleActivity extends AppCompatActivity {
         
         binding.btnContinue.setEnabled(false);
         binding.btnContinue.setText("Saving...");
+        
+        // Get email from intent or use empty string
+        String email = getIntent().getStringExtra("email");
+        if (email == null) {
+            email = "";
+        }
         
         // Create user profile in Supabase
         supabase.createUserProfile(userId, email, selectedRole, accessToken, 

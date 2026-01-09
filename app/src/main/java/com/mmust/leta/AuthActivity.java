@@ -1,7 +1,6 @@
 package com.mmust.leta;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -23,7 +22,6 @@ public class AuthActivity extends AppCompatActivity {
     private ActivityAuthBinding binding;
     private SupabaseClient supabase;
     private ConfigManager config;
-    private SharedPreferences prefs;
     private boolean isSignUpMode = false;
 
     @Override
@@ -35,7 +33,6 @@ public class AuthActivity extends AppCompatActivity {
         // Initialize
         supabase = SupabaseClient.getInstance(this);
         config = ConfigManager.getInstance(this);
-        prefs = getSharedPreferences("LetaApp", MODE_PRIVATE);
         
         // Check if already logged in
         checkExistingSession();
@@ -281,6 +278,7 @@ public class AuthActivity extends AppCompatActivity {
                         
                         // Navigate to role selection
                         Intent intent = new Intent(AuthActivity.this, SelectRoleActivity.class);
+                        intent.putExtra("email", email);
                         startActivity(intent);
                         finish();
                     } catch (JSONException e) {
