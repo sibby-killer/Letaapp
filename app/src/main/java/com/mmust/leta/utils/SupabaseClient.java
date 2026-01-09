@@ -1,11 +1,13 @@
 package com.mmust.leta.utils;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.util.concurrent.CompletableFuture;
 
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -24,13 +26,18 @@ public class SupabaseClient {
     private final String supabaseUrl;
     private final String supabaseKey;
     private final OkHttpClient client;
+    private final SharedPreferences prefs;
     private static final MediaType JSON = MediaType.get("application/json; charset=utf-8");
+    private static final String PREFS_NAME = "supabase_session";
+    private static final String KEY_USER_ID = "user_id";
+    private static final String KEY_ACCESS_TOKEN = "access_token";
     
     private SupabaseClient(Context context) {
         ConfigManager config = ConfigManager.getInstance(context);
         this.supabaseUrl = config.getSupabaseUrl();
         this.supabaseKey = config.getSupabaseAnonKey();
         this.client = new OkHttpClient();
+        this.prefs = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
     }
     
     public static synchronized SupabaseClient getInstance(Context context) {
@@ -38,6 +45,30 @@ public class SupabaseClient {
             instance = new SupabaseClient(context.getApplicationContext());
         }
         return instance;
+    }
+    
+    // Session Management
+    public String getCurrentUserId() {
+        return prefs.getString(KEY_USER_ID, null);
+    }
+    
+    public String getAccessToken() {
+        return prefs.getString(KEY_ACCESS_TOKEN, null);
+    }
+    
+    public void saveSession(String userId, String accessToken) {
+        prefs.edit()
+            .putString(KEY_USER_ID, userId)
+            .putString(KEY_ACCESS_TOKEN, accessToken)
+            .apply();
+    }
+    
+    public void clearSession() {
+        prefs.edit().clear().apply();
+    }
+    
+    public boolean isLoggedIn() {
+        return getCurrentUserId() != null && getAccessToken() != null;
     }
     
     // Sign Up
@@ -227,6 +258,54 @@ public class SupabaseClient {
         } catch (JSONException e) {
             callback.onError("Failed to create request: " + e.getMessage());
         }
+    }
+    
+    // Update User
+    public CompletableFuture<Boolean> updateUser(String userId, JSONObject updates) {
+        CompletableFuture<Boolean> future = new CompletableFuture<>();
+        String accessToken = getAccessToken();
+        
+        if (accessToken == null) {
+            future.completeExceptionally(new Exception("Not authenticated"));
+            return future;
+        }
+        
+        try {
+            RequestBody body = RequestBody.create(updates.toString(), JSON);
+            Request request = new Request.Builder()
+                    .url(supabaseUrl + "/rest/v1/users?id=eq." + userId)
+                    .addHeader("apikey", supabaseKey)
+                    .addHeader("Authorization", "Bearer " + accessToken)
+                    .addHeader("Content-Type", "application/json")
+                    .addHeader("Prefer", "return=representation")
+                    .patch(body)
+                    .build();
+            
+            client.newCall(request).enqueue(new Callback() {
+                @Override
+                public void onFailure(Call call, IOException e) {
+                    future.completeExceptionally(e);
+                }
+                
+                @Override
+                public void onResponse(Call call, Response response) throws IOException {
+                    if (response.isSuccessful()) {
+                        future.complete(true);
+                    } else {
+                        future.completeExceptionally(new Exception(parseError(response.body().string())));
+                    }
+                }
+            });
+        } catch (Exception e) {
+            future.completeExceptionally(e);
+        }
+        
+        return future;
+    }
+    
+    // Sign Out
+    public void signOut() {
+        clearSession();
     }
     
     private String parseError(String responseBody) {

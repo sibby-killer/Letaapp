@@ -45,12 +45,9 @@ public class AuthActivity extends AppCompatActivity {
     }
     
     private void checkExistingSession() {
-        String userId = prefs.getString("user_id", null);
-        String accessToken = prefs.getString("access_token", null);
-        
-        if (userId != null && accessToken != null) {
+        if (supabase.isLoggedIn()) {
             // User is logged in, route to dashboard
-            UserRouter.routeUser(this, userId, accessToken);
+            UserRouter.routeUser(this, supabase.getCurrentUserId());
         }
     }
     
@@ -204,16 +201,13 @@ public class AuthActivity extends AppCompatActivity {
             @Override
             public void onSuccess(String userId, String accessToken) {
                 runOnUiThread(() -> {
-                    // Save session
-                    prefs.edit()
-                            .putString("user_id", userId)
-                            .putString("access_token", accessToken)
-                            .apply();
+                    // Save session in SupabaseClient
+                    supabase.saveSession(userId, accessToken);
                     
                     ErrorHandler.showSuccess(AuthActivity.this, "Login successful!");
                     
                     // Route to dashboard
-                    UserRouter.routeUser(AuthActivity.this, userId, accessToken);
+                    UserRouter.routeUser(AuthActivity.this, userId);
                 });
             }
             
@@ -280,11 +274,8 @@ public class AuthActivity extends AppCompatActivity {
                         JSONObject jsonResponse = new JSONObject(data);
                         String accessToken = jsonResponse.optString("access_token", "");
                         
-                        // Save session
-                        prefs.edit()
-                                .putString("user_id", userId)
-                                .putString("access_token", accessToken)
-                                .apply();
+                        // Save session in SupabaseClient
+                        supabase.saveSession(userId, accessToken);
                         
                         ErrorHandler.showSuccess(AuthActivity.this, "Account created successfully!");
                         

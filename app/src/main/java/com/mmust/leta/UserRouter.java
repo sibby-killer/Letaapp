@@ -16,10 +16,20 @@ public class UserRouter {
      * Routes the user to the appropriate dashboard based on their role in Supabase
      * @param context Current activity context
      * @param userId User's Supabase UID
-     * @param accessToken User's access token
      */
-    public static void routeUser(Context context, String userId, String accessToken) {
+    public static void routeUser(Context context, String userId) {
         SupabaseClient supabase = SupabaseClient.getInstance(context);
+        String accessToken = supabase.getAccessToken();
+        
+        if (accessToken == null) {
+            // No access token, redirect to auth
+            Intent intent = new Intent(context, AuthActivity.class);
+            context.startActivity(intent);
+            if (context instanceof android.app.Activity) {
+                ((android.app.Activity) context).finish();
+            }
+            return;
+        }
         
         supabase.getUserData(userId, accessToken, new SupabaseClient.DataCallback() {
             @Override
