@@ -1,23 +1,20 @@
 package com.mmust.leta;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.firestore.FirebaseFirestore;
 import com.mmust.leta.databinding.ActivitySelectRoleBinding;
-
-import java.util.HashMap;
-import java.util.Map;
+import com.mmust.leta.utils.SupabaseClient;
 
 public class SelectRoleActivity extends AppCompatActivity {
     
     private ActivitySelectRoleBinding binding;
-    private FirebaseAuth mAuth;
-    private FirebaseFirestore db;
+    private SupabaseClient supabase;
+    private SharedPreferences prefs;
     private String selectedRole = "student"; // Default to student
 
     @Override
@@ -26,9 +23,9 @@ public class SelectRoleActivity extends AppCompatActivity {
         binding = ActivitySelectRoleBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         
-        // Initialize Firebase
-        mAuth = FirebaseAuth.getInstance();
-        db = FirebaseFirestore.getInstance();
+        // Initialize
+        supabase = SupabaseClient.getInstance(this);
+        prefs = getSharedPreferences("LetaApp", MODE_PRIVATE);
         
         setupListeners();
     }
@@ -70,27 +67,45 @@ public class SelectRoleActivity extends AppCompatActivity {
     }
     
     private void saveRoleAndContinue() {
-        String uid = mAuth.getCurrentUser().getUid();
+        String userId = prefs.getString("user_id", null);
+        String accessToken = prefs.getString("access_token", null);
+        String email = prefs.getString("email", "");
+        
+        if (userId == null || accessToken == null) {
+            Toast.makeText(this, "Session expired. Please login again.", Toast.LENGTH_SHORT).show();
+            startActivity(new Intent(this, AuthActivity.class));
+            finish();
+            return;
+        }
         
         binding.btnContinue.setEnabled(false);
+        binding.btnContinue.setText("Saving...");
         
-        // Create user document in Firestore
-        Map<String, Object> user = new HashMap<>();
-        user.put("role", selectedRole);
-        user.put("email", mAuth.getCurrentUser().getEmail());
-        user.put("createdAt", System.currentTimeMillis());
-        
-        db.collection("users").document(uid).set(user)
-                .addOnSuccessListener(aVoid -> {
-                    // Role saved successfully, navigate to appropriate dashboard
-                    navigateToRoleDashboard(selectedRole);
-                })
-                .addOnFailureListener(e -> {
-                    binding.btnContinue.setEnabled(true);
-                    Toast.makeText(SelectRoleActivity.this, 
-                            "Failed to save role: " + e.getMessage(), 
-                            Toast.LENGTH_SHORT).show();
-                });
+        // Create user profile in Supabase
+        supabase.createUserProfile(userId, email, selectedRole, accessToken, 
+            new SupabaseClient.DataCallback() {
+                @Override
+                public void onSuccess(String data) {
+                    runOnUiThread(() -> {
+                        Toast.makeText(SelectRoleActivity.this, 
+                                "Profile created!", Toast.LENGTH_SHORT).show();
+                        
+                        // Navigate to appropriate dashboard
+                        navigateToRoleDashboard(selectedRole);
+                    });
+                }
+                
+                @Override
+                public void onError(String error) {
+                    runOnUiThread(() -> {
+                        binding.btnContinue.setEnabled(true);
+                        binding.btnContinue.setText(R.string.continue_btn);
+                        Toast.makeText(SelectRoleActivity.this, 
+                                "Failed to save role: " + error, 
+                                Toast.LENGTH_SHORT).show();
+                    });
+                }
+            });
     }
     
     private void navigateToRoleDashboard(String role) {

@@ -1,40 +1,29 @@
 package com.mmust.leta;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
 
-import com.mmust.leta.utils.ConfigManager;
-import com.mmust.leta.utils.ErrorHandler;
-import com.mmust.leta.utils.ValidationHelper;
-
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.android.gms.auth.api.signin.GoogleSignIn;
-import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
-import com.google.android.gms.auth.api.signin.GoogleSignInClient;
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
-import com.google.android.gms.common.api.ApiException;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthCredential;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.GoogleAuthProvider;
-import com.google.firebase.firestore.FirebaseFirestore;
 import com.mmust.leta.databinding.ActivityAuthBinding;
+import com.mmust.leta.utils.ConfigManager;
+import com.mmust.leta.utils.ErrorHandler;
+import com.mmust.leta.utils.SupabaseClient;
+import com.mmust.leta.utils.ValidationHelper;
 
-import java.util.HashMap;
-import java.util.Map;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 public class AuthActivity extends AppCompatActivity {
     
     private ActivityAuthBinding binding;
-    private FirebaseAuth mAuth;
-    private FirebaseFirestore db;
-    private GoogleSignInClient mGoogleSignInClient;
+    private SupabaseClient supabase;
     private ConfigManager config;
-    private static final int RC_SIGN_IN = 9001;
+    private SharedPreferences prefs;
     private boolean isSignUpMode = false;
 
     @Override
@@ -43,36 +32,31 @@ public class AuthActivity extends AppCompatActivity {
         binding = ActivityAuthBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         
-        // Initialize Firebase
-        mAuth = FirebaseAuth.getInstance();
-        db = FirebaseFirestore.getInstance();
+        // Initialize
+        supabase = SupabaseClient.getInstance(this);
         config = ConfigManager.getInstance(this);
+        prefs = getSharedPreferences("LetaApp", MODE_PRIVATE);
         
-        // Configure Google Sign In
-        String webClientId = getString(R.string.default_web_client_id);
-        if (!webClientId.contains("YOUR_")) {
-            GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                    .requestIdToken(webClientId)
-                    .requestEmail()
-                    .build();
-            mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
-        } else {
-            // Hide Google Sign-In button if not configured
-            binding.btnGoogleSignIn.setVisibility(View.GONE);
-        }
+        // Check if already logged in
+        checkExistingSession();
         
         setupListeners();
         setupRealTimeValidation();
     }
     
-    private void setupListeners() {
-        // Login Button
-        binding.btnLogin.setOnClickListener(v -> handleAuthAction());
+    private void checkExistingSession() {
+        String userId = prefs.getString("user_id", null);
+        String accessToken = prefs.getString("access_token", null);
         
-        // Google Sign In Button
-        if (mGoogleSignInClient != null) {
-            binding.btnGoogleSignIn.setOnClickListener(v -> signInWithGoogle());
+        if (userId != null && accessToken != null) {
+            // User is logged in, route to dashboard
+            UserRouter.routeUser(this, userId, accessToken);
         }
+    }
+    
+    private void setupListeners() {
+        // Main action button
+        binding.btnLogin.setOnClickListener(v -> handleAuthAction());
         
         // Forgot Password
         binding.tvForgotPassword.setOnClickListener(v -> {
@@ -211,8 +195,37 @@ public class AuthActivity extends AppCompatActivity {
             return;
         }
         
-        // Perform login
-        signInWithEmail(email, password);
+        // Show loading
+        binding.btnLogin.setEnabled(false);
+        binding.btnLogin.setText("Logging in...");
+        
+        // Sign in with Supabase
+        supabase.signIn(email, password, new SupabaseClient.SupabaseCallback() {
+            @Override
+            public void onSuccess(String userId, String accessToken) {
+                runOnUiThread(() -> {
+                    // Save session
+                    prefs.edit()
+                            .putString("user_id", userId)
+                            .putString("access_token", accessToken)
+                            .apply();
+                    
+                    ErrorHandler.showSuccess(AuthActivity.this, "Login successful!");
+                    
+                    // Route to dashboard
+                    UserRouter.routeUser(AuthActivity.this, userId, accessToken);
+                });
+            }
+            
+            @Override
+            public void onError(String error) {
+                runOnUiThread(() -> {
+                    binding.btnLogin.setEnabled(true);
+                    binding.btnLogin.setText(R.string.log_in);
+                    ErrorHandler.showError(AuthActivity.this, error);
+                });
+            }
+        });
     }
     
     private void performSignUp() {
@@ -253,118 +266,65 @@ public class AuthActivity extends AppCompatActivity {
             return;
         }
         
-        // Perform signup
-        signUpWithEmail(email, password);
-    }
-    
-    private void signInWithEmail(String email, String password) {
-        // Show loading
-        binding.btnLogin.setEnabled(false);
-        binding.btnLogin.setText("Logging in...");
-        
-        mAuth.signInWithEmailAndPassword(email, password)
-                .addOnCompleteListener(this, task -> {
-                    binding.btnLogin.setEnabled(true);
-                    binding.btnLogin.setText(R.string.log_in);
-                    
-                    if (task.isSuccessful()) {
-                        // Sign in success
-                        ErrorHandler.showSuccess(this, "Login successful!");
-                        String uid = mAuth.getCurrentUser().getUid();
-                        checkUserRoleAndNavigate(uid);
-                    } else {
-                        // Sign in failed - show user-friendly error
-                        ErrorHandler.handleFirebaseAuthError(AuthActivity.this, task.getException());
-                    }
-                });
-    }
-    
-    private void signUpWithEmail(String email, String password) {
         // Show loading
         binding.btnLogin.setEnabled(false);
         binding.btnLogin.setText("Creating account...");
         
-        mAuth.createUserWithEmailAndPassword(email, password)
-                .addOnCompleteListener(this, task -> {
-                    binding.btnLogin.setEnabled(true);
-                    binding.btnLogin.setText(R.string.sign_up);
-                    
-                    if (task.isSuccessful()) {
-                        // Sign up success
-                        ErrorHandler.showSuccess(this, "Account created successfully!");
+        // Sign up with Supabase
+        supabase.signUp(email, password, new SupabaseClient.SupabaseCallback() {
+            @Override
+            public void onSuccess(String userId, String data) {
+                runOnUiThread(() -> {
+                    // Parse response to get access token
+                    try {
+                        JSONObject jsonResponse = new JSONObject(data);
+                        String accessToken = jsonResponse.optString("access_token", "");
+                        
+                        // Save session
+                        prefs.edit()
+                                .putString("user_id", userId)
+                                .putString("access_token", accessToken)
+                                .apply();
+                        
+                        ErrorHandler.showSuccess(AuthActivity.this, "Account created successfully!");
                         
                         // Navigate to role selection
                         Intent intent = new Intent(AuthActivity.this, SelectRoleActivity.class);
                         startActivity(intent);
                         finish();
-                    } else {
-                        // Sign up failed - show user-friendly error
-                        ErrorHandler.handleFirebaseAuthError(AuthActivity.this, task.getException());
+                    } catch (JSONException e) {
+                        ErrorHandler.showError(AuthActivity.this, "Error parsing response");
                     }
                 });
+            }
+            
+            @Override
+            public void onError(String error) {
+                runOnUiThread(() -> {
+                    binding.btnLogin.setEnabled(true);
+                    binding.btnLogin.setText(R.string.sign_up);
+                    ErrorHandler.showError(AuthActivity.this, error);
+                });
+            }
+        });
     }
     
     private void resetPassword(String email) {
-        mAuth.sendPasswordResetEmail(email)
-                .addOnSuccessListener(aVoid -> {
-                    ErrorHandler.showSuccess(this, "Password reset email sent! Check your inbox.");
-                })
-                .addOnFailureListener(e -> {
-                    ErrorHandler.handleFirebaseAuthError(this, e);
+        supabase.resetPassword(email, new SupabaseClient.SupabaseCallback() {
+            @Override
+            public void onSuccess(String userId, String data) {
+                runOnUiThread(() -> {
+                    ErrorHandler.showSuccess(AuthActivity.this, "Password reset email sent! Check your inbox.");
                 });
-    }
-    
-    private void signInWithGoogle() {
-        Intent signInIntent = mGoogleSignInClient.getSignInIntent();
-        startActivityForResult(signInIntent, RC_SIGN_IN);
-    }
-    
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        
-        if (requestCode == RC_SIGN_IN) {
-            Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
-            try {
-                GoogleSignInAccount account = task.getResult(ApiException.class);
-                firebaseAuthWithGoogle(account.getIdToken());
-            } catch (ApiException e) {
-                Toast.makeText(this, "Google sign in failed: " + e.getMessage(), Toast.LENGTH_SHORT).show();
             }
-        }
-    }
-    
-    private void firebaseAuthWithGoogle(String idToken) {
-        AuthCredential credential = GoogleAuthProvider.getCredential(idToken, null);
-        mAuth.signInWithCredential(credential)
-                .addOnCompleteListener(this, task -> {
-                    if (task.isSuccessful()) {
-                        String uid = mAuth.getCurrentUser().getUid();
-                        checkUserRoleAndNavigate(uid);
-                    } else {
-                        Toast.makeText(AuthActivity.this, "Authentication failed.",
-                                Toast.LENGTH_SHORT).show();
-                    }
+            
+            @Override
+            public void onError(String error) {
+                runOnUiThread(() -> {
+                    ErrorHandler.showError(AuthActivity.this, error);
                 });
-    }
-    
-    private void checkUserRoleAndNavigate(String uid) {
-        db.collection("users").document(uid).get()
-                .addOnSuccessListener(documentSnapshot -> {
-                    if (documentSnapshot.exists() && documentSnapshot.contains("role")) {
-                        // User has a role, navigate to appropriate dashboard
-                        UserRouter.routeUser(AuthActivity.this, uid);
-                    } else {
-                        // New user, needs to select role
-                        Intent intent = new Intent(AuthActivity.this, SelectRoleActivity.class);
-                        startActivity(intent);
-                        finish();
-                    }
-                })
-                .addOnFailureListener(e -> {
-                    Toast.makeText(AuthActivity.this, "Error checking user role: " + e.getMessage(),
-                            Toast.LENGTH_SHORT).show();
-                });
+            }
+        });
     }
     
     @Override

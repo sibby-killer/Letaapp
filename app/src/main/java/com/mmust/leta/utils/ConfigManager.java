@@ -34,9 +34,13 @@ public class ConfigManager {
         return instance;
     }
     
-    // Firebase Configuration
-    public String getFirebaseApiKey() {
-        return properties.getProperty("firebase_api_key", "");
+    // Supabase Configuration
+    public String getSupabaseUrl() {
+        return properties.getProperty("supabase_url", "");
+    }
+    
+    public String getSupabaseAnonKey() {
+        return properties.getProperty("supabase_anon_key", "");
     }
     
     // Paystack Configuration

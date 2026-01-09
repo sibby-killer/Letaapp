@@ -32,5 +32,5 @@
     <string name="view_hotspots">View Hotspots Map</string>
     <string name="online">Online</string>
     <string name="offline">Offline</string>
-    <string name="default_web_client_id">YOUR_FIREBASE_WEB_CLIENT_ID_HERE</string>
+    <string name="default_web_client_id">1:456883205368:android:0274c0579fce7cd9d1770d</string>
 </resources>
